@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>skin/main.qml</file>
+    </qresource>
+</RCC>
