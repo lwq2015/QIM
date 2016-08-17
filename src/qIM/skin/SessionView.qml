@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4
+import QtQuick 2.7
 
 Rectangle {
     width: 700
@@ -35,15 +36,17 @@ Rectangle {
                 }
             }
 
-            MouseArea{
+
+            //ListView.currentIndex:
+            MouseArea {
                 anchors.fill: parent
-                onClicked: parent.ListView.view.currentIndex=item //sessionListView.currentIndex = index
+                onClicked: parent.ListView.view.currentIndex  = index //sessionListView.currentIndex = index
 
             }
         }
+
+
     }
-
-
 
     ListView {
         id: sessionListView
@@ -63,9 +66,9 @@ Rectangle {
         focus: true
 
         onCurrentIndexChanged: {
-            console.log("current index ", index)
-
-        //    sessionTabView.currentIndex = index
+            console.log("current index ", currentIndex)
+            sessionTabView.currentIndex = currentIndex
+            //    sessionTabView.currentIndex = index
         }
     }
 
