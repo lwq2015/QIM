@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>skin/main.qml</file>
-    </qresource>
+        <file>skin/SessionView.qml</file>
+        <file>skin/images/session.png</file>
+    </qresource>	
 </RCC>
