@@ -185,14 +185,52 @@ Rectangle {
         }
 
         // 工具栏下面的部份
-        RowLayout {
+        ColumnLayout {
+            spacing: 1
             Layout.fillWidth: true
             Layout.fillHeight: true
-            WebEngineView {
+            /*WebEngineView*/Image {
                 id: recvMsgView
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                source: "images/recvMessage.png"
 
-                anchors.fill: parent
-                url:"http://news.baidu.com/"
+              //  url:"http://news.baidu.com/"
+            }
+
+            RowLayout {
+                spacing: 1
+                Layout.minimumHeight: 28
+                Layout.maximumHeight: 28
+                Layout.preferredHeight: 28
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                Rectangle{
+                    anchors.fill: parent
+                    color: "lightsteelblue"
+                }
+            }
+
+            TextEdit{
+                id: sendMsgEdit
+                Layout.minimumHeight: 80
+                Layout.maximumHeight: 300
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                color: "azure"
+             //   backg
+
+            }
+            RowLayout{
+                Layout.minimumHeight: 30
+                Layout.maximumHeight: 30
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Rectangle{
+                    anchors.fill: parent
+                    color: "linen"
+                }
             }
 
 
