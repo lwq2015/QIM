@@ -4,149 +4,172 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
 Rectangle {
-    width: 700
-    height: 480
-    SplitView {
+    anchors.fill: parent
+    ColumnLayout {
         anchors.fill: parent
-        ListModel {
-            id: sessionMgrModel
-            ListElement {
-                image: "images/session.png"
-                title: "Bill Smith"
-                number: "555"
-            }
-            ListElement {
-                image: "images/session.png"
-                title: "John Brown"
-                number: "55"
-            }
-            ListElement {
-                image: "images/session.png"
-                title: "Sam Wise"
-                number: "0"
-            }
-        }
+        // 工具栏部份
+        RowLayout {
+            Layout.minimumHeight: 80
+            Layout.maximumHeight: 80
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.right: parent.right
 
-        Component {
-            id: sessionMgrDelegate
-            Item {
-                id: sessionItem
-                width: parent.width
-                height: 40
-                RowLayout {
-                    anchors.fill: parent
-                    spacing: 4
-
-                    // 会话标识图片
-                    Image {
-                        Layout.preferredWidth: 30
-                        Layout.preferredHeight: 30
-                        source: image
-                    }
-
-                    // 会话主题
-                    Item {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        Text {
-                            anchors.fill: parent
-                            verticalAlignment: Text.AlignVCenter
-                            horizontalAlignment: Text.AlignLeft
-                            text: title
-                        }
-                    }
-
-                    // 会话新消息条数
-                    Rectangle {
-                        color: "skyblue"
-                        visible: (sessionItem.ListView.isCurrentItem === false
-                                  && number > 0) ? true : false
-                        radius: 8
-                        Layout.preferredWidth: 22
-                        Layout.preferredHeight: 18
-                        Text {
-                            color: "whitesmoke"
-                            anchors.centerIn: parent
-                            text: number
-                        }
-                    }
+            // 工具栏左边部份（标题、签名、工具栏）
+            ColumnLayout {
+                Layout.fillWidth: true
+                Layout.minimumWidth: 200
+                anchors.margins: 40
+             //   Layout.fillHeight: true
+                Text {
+                    id: sessionTitle
+                    height: 20
+                    Layout.fillWidth: true
+                    text: "会话标题"
+                    font.pointSize: 16
                 }
-
-                MouseArea {
-                    anchors.fill: parent
-                    property Item closeButtonItem
-                    property bool selectChanged
-                    onClicked: {
-                        selectChanged = (sessionItem.ListView.view.currentIndex === index)
-                        sessionItem.ListView.view.currentIndex = index
-                        // highlightItem 只有一个关闭子控件，所以如果找到了就会是关闭按钮
-                        closeButtonItem = sessionItem.ListView.view.highlightItem.childAt(
-                                    mouse.x, mouse.y)
-                        // 由于这儿的MouseArea会吃掉关闭按钮的鼠标事件，所以需要这儿触发clicked.
-                        if (selectChanged && closeButtonItem) {
-                            closeButtonItem.clicked()
-                        }
-                    }
-                }
-            }
-        }
-
-        ListView {
-            id: sessionListView
-            clip: true
-            width: 150
-            Layout.minimumWidth: 56
-            Layout.maximumWidth: 240
-            model: sessionMgrModel
-            delegate: sessionMgrDelegate
-            highlight: Rectangle {
-                color: "lightsteelblue"
-                radius: 5
-                focus: true
-
-                // 会话关闭按钮
-                Button {
-                    id: sessionItemClose
-                    anchors.right: parent.right
-                    anchors.verticalCenter: parent.verticalCenter
-                    iconSource: hovered ? "images/sessionItemCloseH.png" : "images/sessionItemCloseN.png"
-                    width: 16
+                Text {
+                    id: sessionInfo
                     height: 16
-                    style: ButtonStyle {
-                        // 设置一个dummy style为了去掉默认Button的状态
-                        background: Item {}
+                    Layout.fillWidth: true
+                    text: "显示签名或者群信息"
+                }
+
+                RowLayout {
+                    id: sessionToolbar
+                    Layout.minimumWidth: 400
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+
+                    Button {
+                        id: sendFileButton
+                        iconSource: "images/1_sendFileButton.png"
+                        tooltip: qsTr("Send file(s)")
+                        text: qsTr("Send File")
                     }
-                    onClicked: {
-                        // 关闭当前会话
-                        sessionMgrModel.remove(sessionListView.currentIndex)
+                    Button {
+                        id: sendSmsButton
+                        iconSource: "images/1_sendSmsButton.png"
+                        tooltip: qsTr("Send SMS")
+                        text: qsTr("Send Sms")
+                    }
+                    Button {
+                        id: inviteButton
+                        iconSource: "images/1_inviteButton.png"
+                        tooltip: qsTr("Invite")
+                        text: qsTr("Invite")
+                    }
+                    Button {
+                        id: addToButton
+                        iconSource: "images/1_addToButton.png"
+                        tooltip: qsTr("Add to...")
+                        text:qsTr("Add To")
+                    }
+                    Button {
+                        id: scheduleButton
+                        visible: false
+                        iconSource: "images/1_scheduleButton.png"
+                        tooltip: qsTr("Schedule")
+                        text: qsTr("Schedule")
+                    }
+                    Button {
+                        id: topmostButton
+                        visible: false
+                        iconSource: "images/1_topmostButton.png"
+                        tooltip: qsTr("Topmost")
+                        text: qsTr("Topmost")
+                    }
+                    Button {
+                        id: quitSessionButton
+                        iconSource: "images/1_quitSessionButton.png"
+                        tooltip: qsTr("Quit session")
+                        text:qsTr("Quit")
                     }
                 }
             }
 
-            onCurrentIndexChanged: sessionTabView.currentIndex = currentIndex
-        }
+            // 工具栏右边部份（系统按钮，广告）
+            ColumnLayout {
+             //   width: 200
+             //   Layout.fillHeight: true
+                Layout.minimumWidth: 160
+                Layout.maximumWidth: 160
 
-        TabView {
-            id: sessionTabView
-            tabsVisible: false
+                RowLayout{
+                    Layout.alignment: Qt.AlignRight
+                    Layout.fillWidth: true
+                    Layout.minimumHeight: 30
+                    Layout.maximumHeight: 30
+                    Button{
+                        id: systemMinButton
+                        iconSource: {
+                            if ( hovered )
+                                return "images/systemMinButtonH.png"
 
-            Tab {
-                title: "Red"
-                Rectangle {
-                    color: "red"
+                            if (pressed)
+                                return "images/systemMinButtonD.png"
+
+                            return "images/systemMinButton.png"
+                        }
+
+                    }
+                    Button{
+                        id: systemMaxButton
+                        iconSource: {
+                            if ( hovered )
+                                return "images/systemMaxButtonH.png"
+
+                            if (pressed)
+                                return "images/systemMaxButtonD.png"
+
+                            return "images/systemMaxButton.png"
+                        }
+                    }
+                    Button{
+                        id: systemRestoreButton
+                        visible: false
+                        iconSource: {
+                            if ( hovered )
+                                return "images/systemRestoreButtonH.png"
+
+                            if (pressed)
+                                return "images/systemRestoreButtonD.png"
+
+                            return "images/systemRestoreButton.png"
+                        }
+                    }
+                    Button{
+                        id: systemCloseButton
+                        iconSource: {
+                            if ( hovered )
+                                return "images/systemCloseButtonH.png"
+
+                            if (pressed)
+                                return "images/systemCloseButtonD.png"
+
+                            return "images/systemCloseButton.png"
+                        }
+                    }
                 }
-            }
-            Tab {
-                title: "Blue"
-                Rectangle {
-                    color: "blue"
-                }
-            }
-            Tab {
-                title: "Green"
-                Rectangle {
+
+                Rectangle{
+                    id: adButton
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
                     color: "green"
                 }
+            }
+
+        }
+
+        // 工具栏下面的部份
+        RowLayout {
+           Layout.fillWidth: true
+           Layout.fillHeight: true
+
+            Rectangle{
+                color: "red"
+                anchors.fill: parent
             }
         }
     }

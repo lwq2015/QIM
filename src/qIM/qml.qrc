@@ -1,6 +1,17 @@
 <RCC>
     <qresource prefix="/">
         <file>skin/SessionView.qml</file>
-        <file>skin/images/session.png</file>
-    </qresource>	
+        <file>skin/SessionMgrView.qml</file>
+        <file>skin/Window.qml</file>
+        <file>skin/images/1_addToButton.png</file>
+        <file>skin/images/1_inviteButton.png</file>
+        <file>skin/images/1_quitSessionButton.png</file>
+        <file>skin/images/1_scheduleButton.png</file>
+        <file>skin/images/1_sendFileButton.png</file>
+        <file>skin/images/1_sendSmsButton.png</file>
+        <file>skin/images/1_session.png</file>
+        <file>skin/images/1_sessionItemCloseH.png</file>
+        <file>skin/images/1_sessionItemCloseN.png</file>
+        <file>skin/images/1_toppmostButton.png</file>
+    </qresource>
 </RCC>
