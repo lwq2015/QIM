@@ -12,7 +12,7 @@ QML_IMPORT_PATH =
 
 # Default rules for deployment.
 include(deployment.pri)
-OUTDIR = $${PWD}/build
+OUTDIR = $${PWD}/../../build
 win32:Debug{
         DESTDIR += $${OUTDIR}/bin/debug
         OBJECTS_DIR += $${OUTDIR}/obj/$${TARGET}/debug

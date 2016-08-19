@@ -188,11 +188,11 @@ Rectangle {
         RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            WebEngineView{
+            WebEngineView {
                 id: recvMsgView
 
                 anchors.fill: parent
-                url:"http://www.golangtc.com/"
+                url:"http://news.baidu.com/"
             }
 
 
