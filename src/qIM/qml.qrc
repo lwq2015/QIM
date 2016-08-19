@@ -25,5 +25,6 @@
         <file>skin/StatusButtonStyle.qml</file>
         <file>skin/SystemButtonStyle.qml</file>
         <file>skin/images/systemMenuButton.png</file>
+        <file>skin/images/recvMessage.png</file>
     </qresource>
 </RCC>
