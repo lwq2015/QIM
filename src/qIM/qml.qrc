@@ -14,16 +14,16 @@
         <file>skin/images/1_sessionItemClose.png</file>
         <file>skin/images/1_topmostButton.png</file>
         <file>skin/images/systemCloseButton.png</file>
-        <file>skin/images/systemCloseButtonD.png</file>
         <file>skin/images/systemCloseButtonH.png</file>
         <file>skin/images/systemMaxButton.png</file>
-        <file>skin/images/systemMaxButtonD.png</file>
         <file>skin/images/systemMaxButtonH.png</file>
         <file>skin/images/systemMinButton.png</file>
-        <file>skin/images/systemMinButtonD.png</file>
         <file>skin/images/systemMinButtonH.png</file>
         <file>skin/images/systemRestoreButton.png</file>
-        <file>skin/images/systemRestoreButtonD.png</file>
         <file>skin/images/systemRestoreButtonH.png</file>
+        <file>skin/images/background.jpg</file>
+        <file>skin/StatusButtonStyle.qml</file>
+        <file>skin/SystemButtonStyle.qml</file>
+        <file>skin/images/systemMenuButton.png</file>
     </qresource>
 </RCC>

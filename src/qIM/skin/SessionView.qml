@@ -6,6 +6,17 @@ import QtQuick.Controls.Styles 1.4
 Rectangle {
     anchors.fill: parent
     color: backgroundColor
+    BorderImage {
+        id: sessionBackground
+        border.left: 2
+        border.top: 80
+        border.right: 2
+        border.bottom: 2
+        anchors.fill: parent
+        opacity: 0.25 // 背景图片透明度小些，才能使前面控件图片的锯齿问题降低
+        source: "images/background.jpg" // 会话窗口背景图片
+    }
+
     ColumnLayout {
         anchors.fill: parent
         // 工具栏部份
@@ -41,24 +52,33 @@ Rectangle {
                         iconSource: "images/1_sendFileButton.png"
                         tooltip: qsTr("Send file(s)")
                         text: qsTr("Send File")
+                        antialiasing: true
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: sendSmsButton
                         iconSource: "images/1_sendSmsButton.png"
                         tooltip: qsTr("Send SMS")
                         text: qsTr("Send Sms")
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: inviteButton
                         iconSource: "images/1_inviteButton.png"
                         tooltip: qsTr("Invite")
                         text: qsTr("Invite")
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: addToButton
                         iconSource: "images/1_addToButton.png"
                         tooltip: qsTr("Add to...")
                         text: qsTr("Add To")
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: scheduleButton
@@ -66,6 +86,8 @@ Rectangle {
                         iconSource: "images/1_scheduleButton.png"
                         tooltip: qsTr("Schedule")
                         text: qsTr("Schedule")
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: topmostButton
@@ -73,12 +95,16 @@ Rectangle {
                         iconSource: "images/1_topmostButton.png"
                         tooltip: qsTr("Topmost")
                         text: qsTr("Topmost")
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: quitSessionButton
                         iconSource: "images/1_quitSessionButton.png"
                         tooltip: qsTr("Quit session")
                         text: qsTr("Quit")
+                        style: StatusButtonStyle {
+                        }
                     }
                 }
             }
@@ -92,26 +118,46 @@ Rectangle {
 
                 RowLayout {
                     spacing: 0
-                    Layout.alignment: Qt.AlignRight
-                    Layout.fillWidth: true
                     Layout.minimumHeight: 30
                     Layout.maximumHeight: 30
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignRight
+                    // 使用 '||' 重新格式化会换行，使用 '+' 是一样的效果
+                    Button {
+                        id: systemMenuButton
+                        anchors.top: parent.top
+                        iconSource: "images/systemMenuButton.png"
+                        style: StatusButtonStyle {
+                        }
+                    }
                     Button {
                         id: systemMinButton
-                        iconSource: hovered ? "images/systemMinButtonH.png" : (pressed ? "images/systemMinButtonD.png" : "images/systemMinButton.png")
+                        anchors.top: parent.top
+                        iconSource: (hovered + pressed) ? "images/systemMinButtonH.png" : "images/systemMinButton.png"
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: systemMaxButton
-                        iconSource: hovered ? "images/systemMaxButtonH.png" : (pressed ? "images/systemMaxButtonD.png" : "images/systemMaxButton.png")
+                        anchors.top: parent.top
+                        iconSource: (hovered + pressed) ? "images/systemMaxButtonH.png" : "images/systemMaxButton.png"
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: systemRestoreButton
+                        anchors.top: parent.top
                         visible: false
-                        iconSource: hovered ? "images/systemRestoreButtonH.png" : (pressed ? "images/systemRestoreButtonD.png" : "images/systemRestoreButton.png")
+                        iconSource: (hovered + pressed) ? "images/systemRestoreButtonH.png" : "images/systemRestoreButton.png"
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: systemCloseButton
-                        iconSource: hovered ? "images/systemCloseButtonH.png" : (pressed ? "images/systemCloseButtonD.png" : "images/systemCloseButton.png")
+                        anchors.top: parent.top
+                        iconSource: (hovered + pressed) ? "images/systemCloseButtonH.png" : "images/systemCloseButton.png"
+                        style: StatusButtonStyle {
+                        }
                         onClicked: Qt.quit()
                     }
                 }
@@ -141,7 +187,8 @@ Rectangle {
             Layout.fillHeight: true
 
             Rectangle {
-                color: "red"
+                color: "lightblue"
+                opacity: 0.6
                 anchors.fill: parent
             }
         }

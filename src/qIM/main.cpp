@@ -1,4 +1,4 @@
-#include <QGuiApplication>
+#include <QApplication>
 #include <QQuickView>
 #include <QQmlContext>
 #include <QColor>
@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
  //   QQmlApplicationEngine engine;
  //   engine.load(QUrl(QStringLiteral("qrc:/skin/SessionView.qml")));
