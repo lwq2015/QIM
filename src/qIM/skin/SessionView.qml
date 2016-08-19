@@ -5,41 +5,36 @@ import QtQuick.Controls.Styles 1.4
 
 Rectangle {
     anchors.fill: parent
+    color: backgroundColor
     ColumnLayout {
         anchors.fill: parent
         // 工具栏部份
         RowLayout {
             Layout.minimumHeight: 80
             Layout.maximumHeight: 80
-            anchors.left: parent.left
-            anchors.top: parent.top
-            anchors.right: parent.right
+            Layout.fillWidth: true
 
             // 工具栏左边部份（标题、签名、工具栏）
             ColumnLayout {
                 Layout.fillWidth: true
                 Layout.minimumWidth: 200
-                anchors.margins: 40
-             //   Layout.fillHeight: true
+
                 Text {
                     id: sessionTitle
-                    height: 20
+                    //   height: 20
                     Layout.fillWidth: true
                     text: "会话标题"
                     font.pointSize: 16
                 }
                 Text {
                     id: sessionInfo
-                    height: 16
+                    //    height: 16
                     Layout.fillWidth: true
                     text: "显示签名或者群信息"
                 }
 
                 RowLayout {
-                    id: sessionToolbar
-                    Layout.minimumWidth: 400
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
+                    spacing: 1
 
                     Button {
                         id: sendFileButton
@@ -63,7 +58,7 @@ Rectangle {
                         id: addToButton
                         iconSource: "images/1_addToButton.png"
                         tooltip: qsTr("Add to...")
-                        text:qsTr("Add To")
+                        text: qsTr("Add To")
                     }
                     Button {
                         id: scheduleButton
@@ -83,91 +78,69 @@ Rectangle {
                         id: quitSessionButton
                         iconSource: "images/1_quitSessionButton.png"
                         tooltip: qsTr("Quit session")
-                        text:qsTr("Quit")
+                        text: qsTr("Quit")
                     }
                 }
             }
 
             // 工具栏右边部份（系统按钮，广告）
             ColumnLayout {
-             //   width: 200
-             //   Layout.fillHeight: true
                 Layout.minimumWidth: 160
                 Layout.maximumWidth: 160
+                Layout.fillHeight: true
+                Layout.fillWidth: true
 
-                RowLayout{
+                RowLayout {
+                    spacing: 0
                     Layout.alignment: Qt.AlignRight
                     Layout.fillWidth: true
                     Layout.minimumHeight: 30
                     Layout.maximumHeight: 30
-                    Button{
+                    Button {
                         id: systemMinButton
-                        iconSource: {
-                            if ( hovered )
-                                return "images/systemMinButtonH.png"
-
-                            if (pressed)
-                                return "images/systemMinButtonD.png"
-
-                            return "images/systemMinButton.png"
-                        }
-
+                        iconSource: hovered ? "images/systemMinButtonH.png" : (pressed ? "images/systemMinButtonD.png" : "images/systemMinButton.png")
                     }
-                    Button{
+                    Button {
                         id: systemMaxButton
-                        iconSource: {
-                            if ( hovered )
-                                return "images/systemMaxButtonH.png"
-
-                            if (pressed)
-                                return "images/systemMaxButtonD.png"
-
-                            return "images/systemMaxButton.png"
-                        }
+                        iconSource: hovered ? "images/systemMaxButtonH.png" : (pressed ? "images/systemMaxButtonD.png" : "images/systemMaxButton.png")
                     }
-                    Button{
+                    Button {
                         id: systemRestoreButton
                         visible: false
-                        iconSource: {
-                            if ( hovered )
-                                return "images/systemRestoreButtonH.png"
-
-                            if (pressed)
-                                return "images/systemRestoreButtonD.png"
-
-                            return "images/systemRestoreButton.png"
-                        }
+                        iconSource: hovered ? "images/systemRestoreButtonH.png" : (pressed ? "images/systemRestoreButtonD.png" : "images/systemRestoreButton.png")
                     }
-                    Button{
+                    Button {
                         id: systemCloseButton
-                        iconSource: {
-                            if ( hovered )
-                                return "images/systemCloseButtonH.png"
-
-                            if (pressed)
-                                return "images/systemCloseButtonD.png"
-
-                            return "images/systemCloseButton.png"
-                        }
+                        iconSource: hovered ? "images/systemCloseButtonH.png" : (pressed ? "images/systemCloseButtonD.png" : "images/systemCloseButton.png")
+                        onClicked: Qt.quit()
                     }
                 }
 
-                Rectangle{
+                Rectangle {
                     id: adButton
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    color: "green"
+                    color: "lightpink"
+                    Text {
+                        color: "#1bc566"
+                        anchors.centerIn: parent
+                        font.pointSize: 18
+                        text: "欢迎使用QIM"
+                        styleColor: "#de2626"
+                        font.italic: true
+                        font.bold: true
+                        style: Text.Raised
+                    }
                 }
             }
-
         }
 
         // 工具栏下面的部份
         RowLayout {
-           Layout.fillWidth: true
-           Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.fillHeight: true
 
-            Rectangle{
+            Rectangle {
                 color: "red"
                 anchors.fill: parent
             }

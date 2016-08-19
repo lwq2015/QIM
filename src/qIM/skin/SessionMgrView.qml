@@ -6,7 +6,8 @@ import QtQuick.Controls.Styles 1.4
 Rectangle {
     width: 740
     height: 480
- // color: Qt.rgba(0.5, 0.5, 0.5, 0.9)
+    property color backgroundColor: "gainsboro"
+    color: backgroundColor
     Window{}
     SplitView {
         anchors.fill: parent
@@ -139,6 +140,7 @@ Rectangle {
 
             Tab {
                 title: "Red"
+
                 SessionView {}
             }
             Tab {
