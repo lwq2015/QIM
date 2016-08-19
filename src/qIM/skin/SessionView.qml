@@ -8,10 +8,12 @@ Rectangle {
     color: backgroundColor
     BorderImage {
         id: sessionBackground
-        border.left: 2
-        border.top: 80
-        border.right: 2
-        border.bottom: 2
+        border {
+            left: 2
+            top: 80
+            right: 2
+            bottom: 2
+        }
         anchors.fill: parent
         opacity: 0.25 // 背景图片透明度小些，才能使前面控件图片的锯齿问题降低
         source: "images/background.jpg" // 会话窗口背景图片
