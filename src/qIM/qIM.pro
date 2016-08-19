@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick widgets
+QT += qml quick webengine widgets
 CONFIG += c++11
 
 SOURCES += main.cpp

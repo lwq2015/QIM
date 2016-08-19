@@ -2,6 +2,7 @@ import QtQuick 2.7
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
+import QtWebEngine 1.3
 
 Rectangle {
     anchors.fill: parent
@@ -187,12 +188,14 @@ Rectangle {
         RowLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
+            WebEngineView{
+                id: recvMsgView
 
-            Rectangle {
-                color: "lightblue"
-                opacity: 0.6
                 anchors.fill: parent
+                url:"http://www.golangtc.com/"
             }
+
+
         }
     }
 }
