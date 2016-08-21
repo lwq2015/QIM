@@ -20,10 +20,38 @@ Rectangle {
         source: "images/background.jpg" // 会话窗口背景图片
     }
 
+    Component {
+        // 无正常状态的按钮
+        id: statusButtonStyle
+        ButtonStyle {
+            background: Rectangle {
+                border.width: control.activeFocus ? 2 : 1
+                readonly property bool bordered: control.hovered
+                                                 || (control.checkable
+                                                     && control.checked)
+                border.color: bordered ? "#0078d7" : "#00000000"
+                radius: control.checkable ? 1 : 4
+                opacity: 0.5
+                color: "#00000000" // 正常状态时，无色透明
+                gradient: Gradient {
+                    GradientStop {
+                        position: 0
+                        color: bordered ? "#80cccccc" : "#80eeeeee"
+                    }
+                    GradientStop {
+                        position: 1
+                        color: bordered ? "#80aaaaaa" : "#80cccccc"
+                    }
+                }
+            }
+        }
+    }
+
     ColumnLayout {
         anchors.fill: parent
         // 工具栏部份
         RowLayout {
+            id: sessionToolbar
             Layout.minimumHeight: 80
             Layout.maximumHeight: 80
             Layout.fillWidth: true
@@ -32,6 +60,7 @@ Rectangle {
             ColumnLayout {
                 Layout.fillWidth: true
                 Layout.minimumWidth: 200
+                Layout.leftMargin: 6
 
                 Text {
                     id: sessionTitle
@@ -48,7 +77,7 @@ Rectangle {
                 }
 
                 RowLayout {
-                    spacing: 1
+                    spacing: 0
 
                     Button {
                         id: sendFileButton
@@ -56,32 +85,28 @@ Rectangle {
                         tooltip: qsTr("Send file(s)")
                         text: qsTr("Send File")
                         antialiasing: true
-                        style: StatusButtonStyle {
-                        }
+                        style: statusButtonStyle
                     }
                     Button {
                         id: sendSmsButton
                         iconSource: "images/1_sendSmsButton.png"
                         tooltip: qsTr("Send SMS")
                         text: qsTr("Send Sms")
-                        style: StatusButtonStyle {
-                        }
+                        style: statusButtonStyle
                     }
                     Button {
                         id: inviteButton
                         iconSource: "images/1_inviteButton.png"
                         tooltip: qsTr("Invite")
                         text: qsTr("Invite")
-                        style: StatusButtonStyle {
-                        }
+                        style: statusButtonStyle
                     }
                     Button {
                         id: addToButton
                         iconSource: "images/1_addToButton.png"
                         tooltip: qsTr("Add to...")
                         text: qsTr("Add To")
-                        style: StatusButtonStyle {
-                        }
+                        style: statusButtonStyle
                     }
                     Button {
                         id: scheduleButton
@@ -89,8 +114,7 @@ Rectangle {
                         iconSource: "images/1_scheduleButton.png"
                         tooltip: qsTr("Schedule")
                         text: qsTr("Schedule")
-                        style: StatusButtonStyle {
-                        }
+                        style: statusButtonStyle
                     }
                     Button {
                         id: topmostButton
@@ -98,16 +122,14 @@ Rectangle {
                         iconSource: "images/1_topmostButton.png"
                         tooltip: qsTr("Topmost")
                         text: qsTr("Topmost")
-                        style: StatusButtonStyle {
-                        }
+                        style: statusButtonStyle
                     }
                     Button {
                         id: quitSessionButton
                         iconSource: "images/1_quitSessionButton.png"
                         tooltip: qsTr("Quit session")
                         text: qsTr("Quit")
-                        style: StatusButtonStyle {
-                        }
+                        style: statusButtonStyle
                     }
                 }
             }
@@ -130,37 +152,32 @@ Rectangle {
                         id: systemMenuButton
                         anchors.top: parent.top
                         iconSource: "images/systemMenuButton.png"
-                        style: StatusButtonStyle {
-                        }
+                        style: statusButtonStyle
                     }
                     Button {
                         id: systemMinButton
                         anchors.top: parent.top
                         iconSource: (hovered + pressed) ? "images/systemMinButtonH.png" : "images/systemMinButton.png"
-                        style: StatusButtonStyle {
-                        }
+                        style: statusButtonStyle
                     }
                     Button {
                         id: systemMaxButton
                         anchors.top: parent.top
                         iconSource: (hovered + pressed) ? "images/systemMaxButtonH.png" : "images/systemMaxButton.png"
-                        style: StatusButtonStyle {
-                        }
+                        style: statusButtonStyle
                     }
                     Button {
                         id: systemRestoreButton
                         anchors.top: parent.top
                         visible: false
                         iconSource: (hovered + pressed) ? "images/systemRestoreButtonH.png" : "images/systemRestoreButton.png"
-                        style: StatusButtonStyle {
-                        }
+                        style: statusButtonStyle
                     }
                     Button {
                         id: systemCloseButton
                         anchors.top: parent.top
                         iconSource: (hovered + pressed) ? "images/systemCloseButtonH.png" : "images/systemCloseButton.png"
-                        style: StatusButtonStyle {
-                        }
+                        style: statusButtonStyle
                         onClicked: Qt.quit()
                     }
                 }
@@ -185,55 +202,150 @@ Rectangle {
         }
 
         // 工具栏下面的部份
-        ColumnLayout {
-            spacing: 1
+        // 使用SplitView为了使其拖动sendToolbar可以改变收发窗口的高度
+        SplitView {
+            orientation: Qt.Vertical
             Layout.fillWidth: true
             Layout.fillHeight: true
-            /*WebEngineView*/Image {
+
+            WebEngineView {
                 id: recvMsgView
                 Layout.fillHeight: true
                 Layout.fillWidth: true
-                source: "images/recvMessage.png"
-
-              //  url:"http://news.baidu.com/"
+                url: "http://news.baidu.com/"
             }
 
-            RowLayout {
-                spacing: 1
-                Layout.minimumHeight: 28
-                Layout.maximumHeight: 28
-                Layout.preferredHeight: 28
+            ColumnLayout {
+                spacing: 0
+                Layout.minimumHeight: 138
+                Layout.maximumHeight: 358
                 Layout.fillWidth: true
                 Layout.fillHeight: true
 
-                Rectangle{
-                    anchors.fill: parent
-                    color: "lightsteelblue"
+                RowLayout {
+                    id: sendToolbar
+                    spacing: 1
+                    Layout.minimumHeight: 28
+                    Layout.maximumHeight: 28
+                    Layout.fillWidth: true
+
+                    Button {
+                        id: sendbarFont
+                        iconSource: "images/1_sendbarFont.png"
+                        checkable: true
+                        text: qsTr("Font")
+                        tooltip: qsTr("Font color and format")
+                        style: statusButtonStyle
+                    }
+
+                    ToolButton {
+                        id: sendbarEmot
+                        iconSource: "images/1_sendbarEmot.png"
+                        checkable: true
+                        text: qsTr("Emoticon")
+                        tooltip: qsTr("Choose Emoticons")
+                        style: statusButtonStyle
+                    }
+
+                    ToolButton {
+                        id: senbarScreenshot
+                        iconSource: "images/1_sendbarScreenshot.png"
+                        text: qsTr("Screenshot")
+                        tooltip: qsTr("Screenshot")
+                        style: statusButtonStyle
+                    }
+
+                    ToolButton {
+                        id: sendbarImage
+                        iconSource: "images/1_sendbarImage.png"
+                        text: qsTr("Image")
+                        tooltip: qsTr("Choose Image(s)")
+                        style: statusButtonStyle
+                    }
+
+                    ToolButton {
+                        id: sendbarPin
+                        iconSource: checked ? "images/1_sendbarPinSel.png" : "images/1_sendbarPin.png"
+                        checkable: true
+                        text: qsTr("Pin")
+                        tooltip: qsTr("Pin Message")
+                        style: statusButtonStyle
+                    }
+
+                    ToolButton {
+                        id: sendbarShield
+                        iconSource: checked ? "images/1_sendbarShieldSel.png" : "images/1_sendbarShield.png"
+                        checkable: true
+                        text: qsTr("Shield")
+                        tooltip: qsTr("Shield New Message(s)")
+                        style: statusButtonStyle
+                    }
+
+                    ToolButton {
+                        id: sendbarCleanup
+                        iconSource: "images/1_sendbarCleanup.png"
+                        text: qsTr("Clear")
+                        tooltip: qsTr("Clear")
+                        style: statusButtonStyle
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                    }
+
+                    Button {
+                        id: sendbarHistory
+                        iconSource: "images/1_sendbarHistory.png"
+                        text: qsTr("History")
+                        tooltip: qsTr("Show Message History")
+                        style: statusButtonStyle
+                    }
+                }
+
+                TextEdit {
+                    id: sendMsgEdit
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    color: "azure"
+                    wrapMode: TextEdit.Wrap
+                    selectByMouse: true
+                    selectByKeyboard: true
+                    textFormat: TextEdit.RichText
+                    text: "This s a test send textaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaa This s a test send textaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaa"
                 }
             }
+        }
 
-            TextEdit{
-                id: sendMsgEdit
-                Layout.minimumHeight: 80
-                Layout.maximumHeight: 300
+        // 最下面的一栏
+        RowLayout {
+            id: sendFootbar
+            Layout.minimumHeight: 30
+            Layout.maximumHeight: 30
+            Layout.fillWidth: true
+            Layout.margins: 4
+
+            Text {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                color: "azure"
-             //   backg
-
+                verticalAlignment:  Text.AlignBottom
+                color: "royalblue"
+                text: "[广告]让我们开启QML之旅吧"
             }
-            RowLayout{
-                Layout.minimumHeight: 30
-                Layout.maximumHeight: 30
-                Layout.fillWidth: true
+
+            Button {
+                id: sessionClose
                 Layout.fillHeight: true
-                Rectangle{
-                    anchors.fill: parent
-                    color: "linen"
-                }
+                text: qsTr("关闭")
+                tooltip: qsTr("关闭当前会话")
             }
 
-
+            Button {
+                id: sessionSendMsg
+                Layout.fillHeight: true
+                text: qsTr("发送")
+                tooltip: qsTr("发送消息")
+            }
         }
     }
 }

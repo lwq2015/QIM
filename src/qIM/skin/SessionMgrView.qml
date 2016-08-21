@@ -5,7 +5,7 @@ import QtQuick.Controls.Styles 1.4
 
 Rectangle {
     width: 740
-    height: 480
+    height: 510
     property color backgroundColor: "gainsboro"
     color: backgroundColor
     Window{}

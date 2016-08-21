@@ -22,9 +22,19 @@
         <file>skin/images/systemRestoreButton.png</file>
         <file>skin/images/systemRestoreButtonH.png</file>
         <file>skin/images/background.jpg</file>
-        <file>skin/StatusButtonStyle.qml</file>
         <file>skin/SystemButtonStyle.qml</file>
         <file>skin/images/systemMenuButton.png</file>
         <file>skin/images/recvMessage.png</file>
+        <file>skin/images/_readme.txt</file>
+        <file>skin/images/1_sendbarCleanup.png</file>
+        <file>skin/images/1_sendbarEmot.png</file>
+        <file>skin/images/1_sendbarFont.png</file>
+        <file>skin/images/1_sendbarHistory.png</file>
+        <file>skin/images/1_sendbarImage.png</file>
+        <file>skin/images/1_sendbarPin.png</file>
+        <file>skin/images/1_sendbarPinSel.png</file>
+        <file>skin/images/1_sendbarScreenshot.png</file>
+        <file>skin/images/1_sendbarShield.png</file>
+        <file>skin/images/1_sendbarShieldSel.png</file>
     </qresource>
 </RCC>
