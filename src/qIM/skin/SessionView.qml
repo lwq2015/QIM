@@ -71,7 +71,6 @@ Rectangle {
                 }
                 Text {
                     id: sessionInfo
-                    //    height: 16
                     Layout.fillWidth: true
                     text: "显示签名或者群信息"
                 }
@@ -203,152 +202,169 @@ Rectangle {
 
         // 工具栏下面的部份
         // 使用SplitView为了使其拖动sendToolbar可以改变收发窗口的高度
-        SplitView {
-            orientation: Qt.Vertical
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            handleDelegate: Item {
-                width: 1
-                height: 2
-            }
-
-            WebEngineView {
-                id: recvMsgView
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                url: "http://news.baidu.com/"
-            }
-
+        RowLayout {
+            // 左右：会话左边，会话右边的个人信息、历史记录、群成员等
+            spacing: 0
             ColumnLayout {
-                spacing: 0
-                Layout.minimumHeight: 138
-                Layout.maximumHeight: 358
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-
-                RowLayout {
-                    id: sendToolbar
-                    spacing: 1
-                    Layout.minimumHeight: 28
-                    Layout.maximumHeight: 28
-                    Layout.fillWidth: true
-
-                    Button {
-                        id: sendbarFont
-                        iconSource: "images/1_sendbarFont.png"
-                        checkable: true
-                        text: qsTr("Font")
-                        tooltip: qsTr("Font color and format")
-                        style: statusButtonStyle
-                    }
-
-                    ToolButton {
-                        id: sendbarEmot
-                        iconSource: "images/1_sendbarEmot.png"
-                        checkable: true
-                        text: qsTr("Emoticon")
-                        tooltip: qsTr("Choose Emoticons")
-                        style: statusButtonStyle
-                    }
-
-                    ToolButton {
-                        id: senbarScreenshot
-                        iconSource: "images/1_sendbarScreenshot.png"
-                        text: qsTr("Screenshot")
-                        tooltip: qsTr("Screenshot")
-                        style: statusButtonStyle
-                    }
-
-                    ToolButton {
-                        id: sendbarImage
-                        iconSource: "images/1_sendbarImage.png"
-                        text: qsTr("Image")
-                        tooltip: qsTr("Choose Image(s)")
-                        style: statusButtonStyle
-                    }
-
-                    ToolButton {
-                        id: sendbarPin
-                        iconSource: checked ? "images/1_sendbarPinSel.png" : "images/1_sendbarPin.png"
-                        checkable: true
-                        text: qsTr("Pin")
-                        tooltip: qsTr("Pin Message")
-                        style: statusButtonStyle
-                    }
-
-                    ToolButton {
-                        id: sendbarShield
-                        iconSource: checked ? "images/1_sendbarShieldSel.png" : "images/1_sendbarShield.png"
-                        checkable: true
-                        text: qsTr("Shield")
-                        tooltip: qsTr("Shield New Message(s)")
-                        style: statusButtonStyle
-                    }
-
-                    ToolButton {
-                        id: sendbarCleanup
-                        iconSource: "images/1_sendbarCleanup.png"
-                        text: qsTr("Clear")
-                        tooltip: qsTr("Clear")
-                        style: statusButtonStyle
-                    }
-
-                    Item {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                    }
-
-                    Button {
-                        id: sendbarHistory
-                        iconSource: "images/1_sendbarHistory.png"
-                        text: qsTr("History")
-                        tooltip: qsTr("Show Message History")
-                        style: statusButtonStyle
-                    }
-                }
-
-                TextEdit {
-                    id: sendMsgEdit
+                // 上下：消息接收窗口，消息发送窗口
+                SplitView {
+                    orientation: Qt.Vertical
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    color: "azure"
-                    wrapMode: TextEdit.Wrap
-                    selectByMouse: true
-                    selectByKeyboard: true
-                    textFormat: TextEdit.RichText
-                    text: "This s a test send textaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaa This s a test send textaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaa"
+                    handleDelegate: Item {
+                        width: 1
+                        height: 2
+                    }
+
+                    WebEngineView {
+                        id: recvMsgView
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        url: "http://news.baidu.com/"
+                    }
+
+                    ColumnLayout {
+                        spacing: 0
+                        Layout.minimumHeight: 60
+                        Layout.maximumHeight: 340
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+
+                        RowLayout {
+                            id: sendToolbar
+                            spacing: 1
+                            Layout.minimumHeight: 28
+                            Layout.maximumHeight: 28
+                            Layout.fillWidth: true
+
+                            Button {
+                                id: sendbarFont
+                                iconSource: "images/1_sendbarFont.png"
+                                checkable: true
+                                text: qsTr("Font")
+                                tooltip: qsTr("Font color and format")
+                                style: statusButtonStyle
+                            }
+
+                            ToolButton {
+                                id: sendbarEmot
+                                iconSource: "images/1_sendbarEmot.png"
+                                checkable: true
+                                text: qsTr("Emoticon")
+                                tooltip: qsTr("Choose Emoticons")
+                                style: statusButtonStyle
+                            }
+
+                            ToolButton {
+                                id: senbarScreenshot
+                                iconSource: "images/1_sendbarScreenshot.png"
+                                text: qsTr("Screenshot")
+                                tooltip: qsTr("Screenshot")
+                                style: statusButtonStyle
+                            }
+
+                            ToolButton {
+                                id: sendbarImage
+                                iconSource: "images/1_sendbarImage.png"
+                                text: qsTr("Image")
+                                tooltip: qsTr("Choose Image(s)")
+                                style: statusButtonStyle
+                            }
+
+                            ToolButton {
+                                id: sendbarPin
+                                iconSource: checked ? "images/1_sendbarPinSel.png" : "images/1_sendbarPin.png"
+                                checkable: true
+                                text: qsTr("Pin")
+                                tooltip: qsTr("Pin Message")
+                                style: statusButtonStyle
+                            }
+
+                            ToolButton {
+                                id: sendbarShield
+                                iconSource: checked ? "images/1_sendbarShieldSel.png" : "images/1_sendbarShield.png"
+                                checkable: true
+                                text: qsTr("Shield")
+                                tooltip: qsTr("Shield New Message(s)")
+                                style: statusButtonStyle
+                            }
+
+                            ToolButton {
+                                id: sendbarCleanup
+                                iconSource: "images/1_sendbarCleanup.png"
+                                text: qsTr("Clear")
+                                tooltip: qsTr("Clear")
+                                style: statusButtonStyle
+                            }
+
+                            Item {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                            }
+
+                            Button {
+                                id: sendbarHistory
+                                iconSource: "images/1_sendbarHistory.png"
+                                text: qsTr("History")
+                                tooltip: qsTr("Show Message History")
+                                style: statusButtonStyle
+                            }
+                        }
+
+                        TextEdit {
+                            id: sendMsgEdit
+                            Layout.preferredHeight: 120
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            color: "azure"
+                            wrapMode: TextEdit.Wrap
+                            selectByMouse: true
+                            selectByKeyboard: true
+                            textFormat: TextEdit.RichText
+                            text: "This s a test send textaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaa This s a test send textaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaa"
+                        }
+                    }
+                }
+
+                // 最下面的一栏
+                RowLayout {
+                    id: sendFootbar
+                    Layout.minimumHeight: 30
+                    Layout.maximumHeight: 30
+                    Layout.fillWidth: true
+                    Layout.margins: 4
+
+                    Text {
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        verticalAlignment: Text.AlignBottom
+                        color: "royalblue"
+                        text: "[广告]让我们开启QML之旅吧"
+                    }
+
+                    Button {
+                        id: sessionClose
+                        Layout.fillHeight: true
+                        text: qsTr("Close")
+                        tooltip: qsTr("Close Current Session")
+                    }
+
+                    Button {
+                        id: sessionSendMsg
+                        Layout.fillHeight: true
+                        text: qsTr("Send")
+                        tooltip: qsTr("Send Message")
+                    }
                 }
             }
-        }
 
-        // 最下面的一栏
-        RowLayout {
-            id: sendFootbar
-            Layout.minimumHeight: 30
-            Layout.maximumHeight: 30
-            Layout.fillWidth: true
-            Layout.margins: 4
-
-            Text {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                verticalAlignment:  Text.AlignBottom
-                color: "royalblue"
-                text: "[广告]让我们开启QML之旅吧"
-            }
-
-            Button {
-                id: sessionClose
-                Layout.fillHeight: true
-                text: qsTr("Close")
-                tooltip: qsTr("Close Current Session")
-            }
-
-            Button {
-                id: sessionSendMsg
-                Layout.fillHeight: true
-                text: qsTr("Send")
-                tooltip: qsTr("Send Message")
+            // 会话右边的个人信息、历史记录、群成员等
+            ColumnLayout {
+                Rectangle {
+                    Layout.minimumWidth: 160
+                    Layout.maximumWidth: 160
+                    Layout.fillHeight: true
+                }
             }
         }
     }
