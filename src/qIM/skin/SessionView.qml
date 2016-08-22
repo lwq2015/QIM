@@ -207,6 +207,10 @@ Rectangle {
             orientation: Qt.Vertical
             Layout.fillWidth: true
             Layout.fillHeight: true
+            handleDelegate: Item {
+                width: 1
+                height: 2
+            }
 
             WebEngineView {
                 id: recvMsgView
@@ -336,15 +340,15 @@ Rectangle {
             Button {
                 id: sessionClose
                 Layout.fillHeight: true
-                text: qsTr("关闭")
-                tooltip: qsTr("关闭当前会话")
+                text: qsTr("Close")
+                tooltip: qsTr("Close Current Session")
             }
 
             Button {
                 id: sessionSendMsg
                 Layout.fillHeight: true
-                text: qsTr("发送")
-                tooltip: qsTr("发送消息")
+                text: qsTr("Send")
+                tooltip: qsTr("Send Message")
             }
         }
     }
