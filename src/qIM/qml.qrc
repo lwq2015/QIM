@@ -36,5 +36,10 @@
         <file>skin/images/1_sendbarScreenshot.png</file>
         <file>skin/images/1_sendbarShield.png</file>
         <file>skin/images/1_sendbarShieldSel.png</file>
+        <file>skin/MenuButton.qml</file>
+        <file>skin/images/1_triggerRight.png</file>
+        <file>skin/images/1_triggerRightSel.png</file>
+        <file>skin/images/background.png</file>
+        <file>skin/images/buttonMenu.png</file>
     </qresource>
 </RCC>

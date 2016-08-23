@@ -24,23 +24,36 @@ Rectangle {
         // 无正常状态的按钮
         id: statusButtonStyle
         ButtonStyle {
-            background: Rectangle {
-                border.width: control.activeFocus ? 2 : 1
-                border.color: (control.hovered
-                               || (control.checkable
-                                   && control.checked)) ? "#0078d7" : "#00000000"
-                radius: control.checkable ? 1 : 4
-                opacity: 0.5
-                color: "#00000000" // 正常状态时，无色透明
-                gradient: Gradient {
-                    GradientStop {
-                        position: 0
-                        color: control.pressed ? "#80cccccc" : "#80eeeeee"
+            background: Item {
+                Rectangle {
+                    anchors.fill: parent
+                    border.width: control.activeFocus ? 2 : 1
+                    border.color: (control.hovered
+                                   || (control.checkable
+                                       && control.checked)) ? "#0078d7" : "#00000000"
+                    radius: control.checkable ? 1 : 4
+                    opacity: 0.5
+
+                    color: "#00000000" // 正常状态时，无色透明
+                    gradient: Gradient {
+                        GradientStop {
+                            position: 0
+                            color: control.pressed ? "#80cccccc" : "#80eeeeee"
+                        }
+                        GradientStop {
+                            position: 1
+                            color: control.pressed ? "#80aaaaaa" : "#80cccccc"
+                        }
                     }
-                    GradientStop {
-                        position: 1
-                        color: control.pressed ? "#80aaaaaa" : "#80cccccc"
-                    }
+                }
+                Image {
+                    id: imageItem
+                    visible: control.menu !== null
+                    source: "images/arrow-down.png"
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.right: parent.right
+                    anchors.rightMargin: 4
+                    opacity: control.enabled ? 0.6 : 0.5
                 }
             }
         }
@@ -313,21 +326,15 @@ Rectangle {
                             }
 
                             Button {
-                                id: sendbarHistory
-                                iconSource: "images/1_sendbarHistory.png"
+                                width: 120
+                                id: sendbarHistorys
                                 text: qsTr("History")
+                                iconSource: "images/1_sendbarHistory.png"
                                 tooltip: qsTr("Show Message History")
-                                style: statusButtonStyle
-                            }
+                                style: ButtonStyle {
 
-                            Button {
-                               // width: 12
-                                iconSource: "images/1_sendbarHistoryMenu.png"
-                                style: ButtonStyle{
-                                    Item{
-
+                                    background: Item {
                                     }
-
                                 }
 
                                 menu: Menu {
