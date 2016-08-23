@@ -17,7 +17,7 @@ Rectangle {
         }
         anchors.fill: parent
         opacity: 0.25 // 背景图片透明度小些，才能使前面控件图片的锯齿问题降低
-        source: "images/background.jpg" // 会话窗口背景图片
+        source: "images/background.png" // 会话窗口背景图片
     }
 
     Component {
@@ -26,21 +26,20 @@ Rectangle {
         ButtonStyle {
             background: Rectangle {
                 border.width: control.activeFocus ? 2 : 1
-                readonly property bool bordered: control.hovered
-                                                 || (control.checkable
-                                                     && control.checked)
-                border.color: bordered ? "#0078d7" : "#00000000"
+                border.color: (control.hovered
+                               || (control.checkable
+                                   && control.checked)) ? "#0078d7" : "#00000000"
                 radius: control.checkable ? 1 : 4
                 opacity: 0.5
                 color: "#00000000" // 正常状态时，无色透明
                 gradient: Gradient {
                     GradientStop {
                         position: 0
-                        color: bordered ? "#80cccccc" : "#80eeeeee"
+                        color: control.pressed ? "#80cccccc" : "#80eeeeee"
                     }
                     GradientStop {
                         position: 1
-                        color: bordered ? "#80aaaaaa" : "#80cccccc"
+                        color: control.pressed ? "#80aaaaaa" : "#80cccccc"
                     }
                 }
             }
@@ -90,7 +89,7 @@ Rectangle {
                         id: sendSmsButton
                         iconSource: "images/1_sendSmsButton.png"
                         tooltip: qsTr("Send SMS")
-                        text: qsTr("Send Sms")
+                        text: qsTr("Sms")
                         style: statusButtonStyle
                     }
                     Button {
@@ -104,7 +103,7 @@ Rectangle {
                         id: addToButton
                         iconSource: "images/1_addToButton.png"
                         tooltip: qsTr("Add to...")
-                        text: qsTr("Add To")
+                        text: qsTr("Add to")
                         style: statusButtonStyle
                     }
                     Button {
@@ -152,6 +151,16 @@ Rectangle {
                         anchors.top: parent.top
                         iconSource: "images/systemMenuButton.png"
                         style: statusButtonStyle
+                    }
+                    Button {
+                        id: triggerRightView
+                        checkable: true
+                        anchors.top: parent.top
+                        iconSource: checked ? "images/1_triggerRightSel.png" : "images/1_triggerRight.png"
+                        style: statusButtonStyle
+                        onClicked: {
+                            rightView.visible = checked ? false : true
+                        }
                     }
                     Button {
                         id: systemMinButton
@@ -221,6 +230,7 @@ Rectangle {
                         Layout.fillHeight: true
                         Layout.fillWidth: true
                         url: "http://news.baidu.com/"
+                        z: 1
                     }
 
                     ColumnLayout {
@@ -250,7 +260,7 @@ Rectangle {
                                 id: sendbarEmot
                                 iconSource: "images/1_sendbarEmot.png"
                                 checkable: true
-                                text: qsTr("Emoticon")
+                                text: qsTr("Face")
                                 tooltip: qsTr("Choose Emoticons")
                                 style: statusButtonStyle
                             }
@@ -258,8 +268,8 @@ Rectangle {
                             ToolButton {
                                 id: senbarScreenshot
                                 iconSource: "images/1_sendbarScreenshot.png"
-                                text: qsTr("Screenshot")
-                                tooltip: qsTr("Screenshot")
+                                text: qsTr("Capture")
+                                tooltip: qsTr("Capture")
                                 style: statusButtonStyle
                             }
 
@@ -308,6 +318,35 @@ Rectangle {
                                 text: qsTr("History")
                                 tooltip: qsTr("Show Message History")
                                 style: statusButtonStyle
+                            }
+
+                            Button {
+                               // width: 12
+                                iconSource: "images/1_sendbarHistoryMenu.png"
+                                style: ButtonStyle{
+                                    Item{
+
+                                    }
+
+                                }
+
+                                menu: Menu {
+                                    title: "history"
+                                    MenuItem {
+                                        text: "Show message history"
+                                    }
+
+                                    MenuSeparator {
+                                    }
+
+                                    MenuItem {
+                                        text: "Clear"
+                                    }
+
+                                    MenuItem {
+                                        text: "Message manager"
+                                    }
+                                }
                             }
                         }
 
@@ -360,10 +399,12 @@ Rectangle {
 
             // 会话右边的个人信息、历史记录、群成员等
             ColumnLayout {
+                id: rightView
                 Rectangle {
                     Layout.minimumWidth: 160
                     Layout.maximumWidth: 160
                     Layout.fillHeight: true
+                    color: "blue"
                 }
             }
         }
