@@ -25,8 +25,8 @@ Rectangle {
         // 工具栏部份
         RowLayout {
             id: sessionToolbar
-            Layout.minimumHeight: 80
-            Layout.maximumHeight: 80
+            Layout.minimumHeight: 72
+            Layout.maximumHeight: 72
             Layout.fillWidth: true
 
             // 工具栏左边部份（标题、签名、工具栏）
@@ -57,28 +57,32 @@ Rectangle {
                         tooltip: qsTr("Send file(s)")
                         text: qsTr("Send File")
                         antialiasing: true
-                        style: StatusButtonStyle{}
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: sendSmsButton
                         iconSource: "images/1_sendSmsButton.png"
                         tooltip: qsTr("Send SMS")
                         text: qsTr("Sms")
-                        style: StatusButtonStyle{}
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: inviteButton
                         iconSource: "images/1_inviteButton.png"
                         tooltip: qsTr("Invite")
                         text: qsTr("Invite")
-                        style: StatusButtonStyle{}
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: addToButton
                         iconSource: "images/1_addToButton.png"
                         tooltip: qsTr("Add to...")
                         text: qsTr("Add to")
-                        style: StatusButtonStyle{}
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: scheduleButton
@@ -86,7 +90,8 @@ Rectangle {
                         iconSource: "images/1_scheduleButton.png"
                         tooltip: qsTr("Schedule")
                         text: qsTr("Schedule")
-                        style: StatusButtonStyle{}
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: topmostButton
@@ -94,14 +99,16 @@ Rectangle {
                         iconSource: "images/1_topmostButton.png"
                         tooltip: qsTr("Topmost")
                         text: qsTr("Topmost")
-                        style: StatusButtonStyle{}
+                        style: StatusButtonStyle {
+                        }
                     }
                     Button {
                         id: quitSessionButton
                         iconSource: "images/1_quitSessionButton.png"
                         tooltip: qsTr("Quit session")
                         text: qsTr("Quit")
-                        style: StatusButtonStyle{}
+                        style: StatusButtonStyle {
+                        }
                     }
                 }
             }
@@ -112,6 +119,7 @@ Rectangle {
                 Layout.maximumWidth: 160
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                spacing: 0
 
                 RowLayout {
                     spacing: 0
@@ -124,14 +132,25 @@ Rectangle {
                         id: systemMenuButton
                         anchors.top: parent.top
                         iconSource: "images/systemMenuButton.png"
-                        style: SystemButtonStyle{}
+                        style: SystemButtonStyle {
+                        }
+                        menu: Menu {
+                            MenuItem {
+                                text: "Help"
+                            }
+                            MenuItem {
+                                text: "Setting"
+                            }
+                        }
                     }
                     Button {
                         id: triggerRightView
                         checkable: true
                         anchors.top: parent.top
                         iconSource: checked ? "images/1_triggerRightSel.png" : "images/1_triggerRight.png"
-                        style: SystemButtonStyle{}
+                        tooltip: qsTr("Show or Hide right view")
+                        style: SystemButtonStyle {
+                        }
                         onClicked: {
                             rightView.visible = checked ? false : true
                         }
@@ -140,26 +159,34 @@ Rectangle {
                         id: systemMinButton
                         anchors.top: parent.top
                         iconSource: (hovered + pressed) ? "images/systemMinButtonH.png" : "images/systemMinButton.png"
-                        style: SystemButtonStyle{}
+                        tooltip: qsTr("Minimum")
+                        style: SystemButtonStyle {
+                        }
                     }
                     Button {
                         id: systemMaxButton
                         anchors.top: parent.top
                         iconSource: (hovered + pressed) ? "images/systemMaxButtonH.png" : "images/systemMaxButton.png"
-                        style: SystemButtonStyle{}
+                        tooltip: qsTr("Maximum")
+                        style: SystemButtonStyle {
+                        }
                     }
                     Button {
                         id: systemRestoreButton
                         anchors.top: parent.top
                         visible: false
                         iconSource: (hovered + pressed) ? "images/systemRestoreButtonH.png" : "images/systemRestoreButton.png"
-                        style: SystemButtonStyle{}
+                        tooltip: qsTr("Restore")
+                        style: SystemButtonStyle {
+                        }
                     }
                     Button {
                         id: systemCloseButton
                         anchors.top: parent.top
                         iconSource: (hovered + pressed) ? "images/systemCloseButtonH.png" : "images/systemCloseButton.png"
-                        style: SystemButtonStyle{}
+                        tooltip: qsTr("Close")
+                        style: SystemButtonStyle {
+                        }
                         onClicked: Qt.quit()
                     }
                 }
@@ -227,7 +254,8 @@ Rectangle {
                                 checkable: true
                                 text: qsTr("Font")
                                 tooltip: qsTr("Font color and format")
-                                style: StatusButtonStyle{}
+                                style: StatusButtonStyle {
+                                }
                             }
 
                             ToolButton {
@@ -236,7 +264,8 @@ Rectangle {
                                 checkable: true
                                 text: qsTr("Face")
                                 tooltip: qsTr("Choose Emoticons")
-                                style: StatusButtonStyle{}
+                                style: StatusButtonStyle {
+                                }
                             }
 
                             ToolButton {
@@ -244,7 +273,8 @@ Rectangle {
                                 iconSource: "images/1_sendbarScreenshot.png"
                                 text: qsTr("Capture")
                                 tooltip: qsTr("Capture")
-                                style: StatusButtonStyle{}
+                                style: StatusButtonStyle {
+                                }
                             }
 
                             ToolButton {
@@ -252,7 +282,8 @@ Rectangle {
                                 iconSource: "images/1_sendbarImage.png"
                                 text: qsTr("Image")
                                 tooltip: qsTr("Choose Image(s)")
-                                style: StatusButtonStyle{}
+                                style: StatusButtonStyle {
+                                }
                             }
 
                             ToolButton {
@@ -261,7 +292,8 @@ Rectangle {
                                 checkable: true
                                 text: qsTr("Pin")
                                 tooltip: qsTr("Pin Message")
-                                style: StatusButtonStyle{}
+                                style: StatusButtonStyle {
+                                }
                             }
 
                             ToolButton {
@@ -270,7 +302,8 @@ Rectangle {
                                 checkable: true
                                 text: qsTr("Shield")
                                 tooltip: qsTr("Shield New Message(s)")
-                                style: StatusButtonStyle{}
+                                style: StatusButtonStyle {
+                                }
                             }
 
                             ToolButton {
@@ -278,7 +311,8 @@ Rectangle {
                                 iconSource: "images/1_sendbarCleanup.png"
                                 text: qsTr("Clear")
                                 tooltip: qsTr("Clear")
-                                style: StatusButtonStyle{}
+                                style: StatusButtonStyle {
+                                }
                             }
 
                             Item {
@@ -287,12 +321,11 @@ Rectangle {
                             }
 
                             Button {
-
                                 id: sendbarHistorys
-                                text: "历史记录"//qsTr("History")
+                                text: qsTr("History")
                                 iconSource: "images/1_sendbarHistory.png"
                                 tooltip: qsTr("Show Message History")
-                                style: StatusButtonStyle{}
+                                style:MenuButtonStyle{}
                                 menu: Menu {
                                     MenuItem {
                                         text: "Show message history"
@@ -309,14 +342,10 @@ Rectangle {
                                         text: "Message manager"
                                     }
                                 }
-//                                MouseArea{
-//                                    anchors.fill: parent
-//                                    onClicked: {
 
-//                                        console.log(mouse.x,mouse.y)
-//                                    }
-//                                }
-
+                                onClicked: {
+                                    console.log("sendbarHistorys menu clicked")
+                                }
                             }
                         }
 
@@ -360,22 +389,39 @@ Rectangle {
 
                     Button {
                         id: sessionSendMsg
-                        Layout.fillHeight: true
+                        implicitWidth:  80
+                        height: 30
+                      //  Layout.fillHeight: true
                         text: qsTr("Send")
                         tooltip: qsTr("Send Message")
+                    //    color: "white"
+                     //   borderColor:"#adadad"
+                        style:MenuButtonStyle{}
+                        menu: Menu {
+                            MenuItem {
+                                text: "Enter as hotkey for sending message"
+                            }
+
+                            MenuItem {
+                                text: "Ctrl+Enter as hotkey for sending message"
+                            }
+                        }
                     }
                 }
             }
+        }
 
-            // 会话右边的个人信息、历史记录、群成员等
-            ColumnLayout {
-                id: rightView
-                Rectangle {
-                    Layout.minimumWidth: 160
-                    Layout.maximumWidth: 160
-                    Layout.fillHeight: true
-                    color: "blue"
-                }
+        // 会话右边的个人信息、历史记录、群成员等
+        ColumnLayout {
+            id: rightView
+            Layout.minimumWidth: 160
+            Layout.maximumWidth: 160
+            Layout.fillHeight: true
+
+            Rectangle {
+                anchors.fill: parent
+
+                color: "lightblue"
             }
         }
     }
