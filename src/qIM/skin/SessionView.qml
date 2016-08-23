@@ -325,7 +325,8 @@ Rectangle {
                                 text: qsTr("History")
                                 iconSource: "images/1_sendbarHistory.png"
                                 tooltip: qsTr("Show Message History")
-                                style:MenuButtonStyle{}
+                                style: MenuButtonStyle {
+                                }
                                 menu: Menu {
                                     MenuItem {
                                         text: "Show message history"
@@ -389,14 +390,15 @@ Rectangle {
 
                     Button {
                         id: sessionSendMsg
-                        implicitWidth:  80
+                        implicitWidth: 80
                         height: 30
-                      //  Layout.fillHeight: true
+                        //  Layout.fillHeight: true
                         text: qsTr("Send")
                         tooltip: qsTr("Send Message")
-                    //    color: "white"
-                     //   borderColor:"#adadad"
-                        style:MenuButtonStyle{}
+                        //    color: "white"
+                        //   borderColor:"#adadad"
+                        style: MenuButtonStyle {
+                        }
                         menu: Menu {
                             MenuItem {
                                 text: "Enter as hotkey for sending message"
@@ -409,19 +411,19 @@ Rectangle {
                     }
                 }
             }
-        }
 
-        // 会话右边的个人信息、历史记录、群成员等
-        ColumnLayout {
-            id: rightView
-            Layout.minimumWidth: 160
-            Layout.maximumWidth: 160
-            Layout.fillHeight: true
+            // 会话右边的个人信息、历史记录、群成员等
+            ColumnLayout {
+                id: rightView
+                Layout.minimumWidth: 160
+                Layout.maximumWidth: 160
+                Layout.fillHeight: true
 
-            Rectangle {
-                anchors.fill: parent
+                Rectangle {
+                    anchors.fill: parent
 
-                color: "lightblue"
+                    color: "lightblue"
+                }
             }
         }
     }
