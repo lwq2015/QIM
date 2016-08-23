@@ -2,10 +2,10 @@ import QtQuick 2.2
 import QtQuick.Controls 1.2
 import QtQuick.Controls.Private 1.0
 import QtQuick.Controls.Styles 1.4
+import QtQuick.Layouts 1.3
 
 ButtonStyle {
     background: Item {
-        //  implicitWidth: 80
         Rectangle {
             anchors.fill: parent
             border.width: control.activeFocus ? 2 : 1
@@ -27,19 +27,28 @@ ButtonStyle {
                 }
             }
         }
-        MouseArea{
-            anchors.fill: parent
-            onClicked: {
-                console.log(mouse.x, mouse.y)
-            }
+
+        Image {
+            visible: control.menu !== null
+            source: "images/arrow-down.png"
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.rightMargin: 2
+            opacity: control.enabled ? 0.6 : 0.5
+
         }
     }
-
+    MouseArea{
+        anchors.fill: parent
+        z:3
+        onClicked: {
+            console.log("aaa", mouse.x, mouse.y)
+        }
+    }
     label: Item {
-        implicitWidth: row.implicitWidth // + (menuDown.visible ? menuDown.width : 0)
+        implicitWidth: row.implicitWidth
         implicitHeight: row.implicitHeight
-     //   baselineOffset: row.y + text.y + text.baselineOffset
-        Row {
+        RowLayout {
             id: row
             anchors.centerIn: parent
             spacing: 2
@@ -48,20 +57,15 @@ ButtonStyle {
                 anchors.verticalCenter: parent.verticalCenter
             }
             Text {
-                renderType: Settings.isMobile ? Text.QtRendering : Text.NativeRendering
                 anchors.verticalCenter: parent.verticalCenter
                 text: StyleHelpers.stylizeMnemonics(control.text)
                 color: SystemPaletteSingleton.buttonText(control.enabled)
             }
-            Image {
-                visible: control.menu !== null
-                source: "images/arrow-down.png"
+
+            Item {
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.rightMargin: 2
-                opacity: control.enabled ? 0.6 : 0.5
+                width: control.menu !== null ? 3 : 0
             }
         }
-
-
     }
 }

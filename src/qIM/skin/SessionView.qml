@@ -289,7 +289,7 @@ Rectangle {
                             Button {
 
                                 id: sendbarHistorys
-                                text: qsTr("History")
+                                text: "历史记录"//qsTr("History")
                                 iconSource: "images/1_sendbarHistory.png"
                                 tooltip: qsTr("Show Message History")
                                 style: StatusButtonStyle{}
@@ -309,9 +309,14 @@ Rectangle {
                                         text: "Message manager"
                                     }
                                 }
-                                onClicked: {
+//                                MouseArea{
+//                                    anchors.fill: parent
+//                                    onClicked: {
 
-                                }
+//                                        console.log(mouse.x,mouse.y)
+//                                    }
+//                                }
+
                             }
                         }
 
