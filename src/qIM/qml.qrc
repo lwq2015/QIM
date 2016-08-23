@@ -41,5 +41,6 @@
         <file>skin/images/1_triggerRightSel.png</file>
         <file>skin/images/background.png</file>
         <file>skin/images/buttonMenu.png</file>
+        <file>skin/StatusButtonStyle.qml</file>
     </qresource>
 </RCC>

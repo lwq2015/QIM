@@ -20,45 +20,6 @@ Rectangle {
         source: "images/background.png" // 会话窗口背景图片
     }
 
-    Component {
-        // 无正常状态的按钮
-        id: statusButtonStyle
-        ButtonStyle {
-            background: Item {
-                Rectangle {
-                    anchors.fill: parent
-                    border.width: control.activeFocus ? 2 : 1
-                    border.color: (control.hovered
-                                   || (control.checkable
-                                       && control.checked)) ? "#0078d7" : "#00000000"
-                    radius: control.checkable ? 1 : 4
-                    opacity: 0.5
-
-                    color: "#00000000" // 正常状态时，无色透明
-                    gradient: Gradient {
-                        GradientStop {
-                            position: 0
-                            color: control.pressed ? "#80cccccc" : "#80eeeeee"
-                        }
-                        GradientStop {
-                            position: 1
-                            color: control.pressed ? "#80aaaaaa" : "#80cccccc"
-                        }
-                    }
-                }
-                Image {
-                    id: imageItem
-                    visible: control.menu !== null
-                    source: "images/arrow-down.png"
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.right: parent.right
-                    anchors.rightMargin: 4
-                    opacity: control.enabled ? 0.6 : 0.5
-                }
-            }
-        }
-    }
-
     ColumnLayout {
         anchors.fill: parent
         // 工具栏部份
@@ -96,28 +57,28 @@ Rectangle {
                         tooltip: qsTr("Send file(s)")
                         text: qsTr("Send File")
                         antialiasing: true
-                        style: statusButtonStyle
+                        style: StatusButtonStyle{}
                     }
                     Button {
                         id: sendSmsButton
                         iconSource: "images/1_sendSmsButton.png"
                         tooltip: qsTr("Send SMS")
                         text: qsTr("Sms")
-                        style: statusButtonStyle
+                        style: StatusButtonStyle{}
                     }
                     Button {
                         id: inviteButton
                         iconSource: "images/1_inviteButton.png"
                         tooltip: qsTr("Invite")
                         text: qsTr("Invite")
-                        style: statusButtonStyle
+                        style: StatusButtonStyle{}
                     }
                     Button {
                         id: addToButton
                         iconSource: "images/1_addToButton.png"
                         tooltip: qsTr("Add to...")
                         text: qsTr("Add to")
-                        style: statusButtonStyle
+                        style: StatusButtonStyle{}
                     }
                     Button {
                         id: scheduleButton
@@ -125,7 +86,7 @@ Rectangle {
                         iconSource: "images/1_scheduleButton.png"
                         tooltip: qsTr("Schedule")
                         text: qsTr("Schedule")
-                        style: statusButtonStyle
+                        style: StatusButtonStyle{}
                     }
                     Button {
                         id: topmostButton
@@ -133,14 +94,14 @@ Rectangle {
                         iconSource: "images/1_topmostButton.png"
                         tooltip: qsTr("Topmost")
                         text: qsTr("Topmost")
-                        style: statusButtonStyle
+                        style: StatusButtonStyle{}
                     }
                     Button {
                         id: quitSessionButton
                         iconSource: "images/1_quitSessionButton.png"
                         tooltip: qsTr("Quit session")
                         text: qsTr("Quit")
-                        style: statusButtonStyle
+                        style: StatusButtonStyle{}
                     }
                 }
             }
@@ -163,14 +124,14 @@ Rectangle {
                         id: systemMenuButton
                         anchors.top: parent.top
                         iconSource: "images/systemMenuButton.png"
-                        style: statusButtonStyle
+                        style: SystemButtonStyle{}
                     }
                     Button {
                         id: triggerRightView
                         checkable: true
                         anchors.top: parent.top
                         iconSource: checked ? "images/1_triggerRightSel.png" : "images/1_triggerRight.png"
-                        style: statusButtonStyle
+                        style: SystemButtonStyle{}
                         onClicked: {
                             rightView.visible = checked ? false : true
                         }
@@ -179,26 +140,26 @@ Rectangle {
                         id: systemMinButton
                         anchors.top: parent.top
                         iconSource: (hovered + pressed) ? "images/systemMinButtonH.png" : "images/systemMinButton.png"
-                        style: statusButtonStyle
+                        style: SystemButtonStyle{}
                     }
                     Button {
                         id: systemMaxButton
                         anchors.top: parent.top
                         iconSource: (hovered + pressed) ? "images/systemMaxButtonH.png" : "images/systemMaxButton.png"
-                        style: statusButtonStyle
+                        style: SystemButtonStyle{}
                     }
                     Button {
                         id: systemRestoreButton
                         anchors.top: parent.top
                         visible: false
                         iconSource: (hovered + pressed) ? "images/systemRestoreButtonH.png" : "images/systemRestoreButton.png"
-                        style: statusButtonStyle
+                        style: SystemButtonStyle{}
                     }
                     Button {
                         id: systemCloseButton
                         anchors.top: parent.top
                         iconSource: (hovered + pressed) ? "images/systemCloseButtonH.png" : "images/systemCloseButton.png"
-                        style: statusButtonStyle
+                        style: SystemButtonStyle{}
                         onClicked: Qt.quit()
                     }
                 }
@@ -266,7 +227,7 @@ Rectangle {
                                 checkable: true
                                 text: qsTr("Font")
                                 tooltip: qsTr("Font color and format")
-                                style: statusButtonStyle
+                                style: StatusButtonStyle{}
                             }
 
                             ToolButton {
@@ -275,7 +236,7 @@ Rectangle {
                                 checkable: true
                                 text: qsTr("Face")
                                 tooltip: qsTr("Choose Emoticons")
-                                style: statusButtonStyle
+                                style: StatusButtonStyle{}
                             }
 
                             ToolButton {
@@ -283,7 +244,7 @@ Rectangle {
                                 iconSource: "images/1_sendbarScreenshot.png"
                                 text: qsTr("Capture")
                                 tooltip: qsTr("Capture")
-                                style: statusButtonStyle
+                                style: StatusButtonStyle{}
                             }
 
                             ToolButton {
@@ -291,7 +252,7 @@ Rectangle {
                                 iconSource: "images/1_sendbarImage.png"
                                 text: qsTr("Image")
                                 tooltip: qsTr("Choose Image(s)")
-                                style: statusButtonStyle
+                                style: StatusButtonStyle{}
                             }
 
                             ToolButton {
@@ -300,7 +261,7 @@ Rectangle {
                                 checkable: true
                                 text: qsTr("Pin")
                                 tooltip: qsTr("Pin Message")
-                                style: statusButtonStyle
+                                style: StatusButtonStyle{}
                             }
 
                             ToolButton {
@@ -309,7 +270,7 @@ Rectangle {
                                 checkable: true
                                 text: qsTr("Shield")
                                 tooltip: qsTr("Shield New Message(s)")
-                                style: statusButtonStyle
+                                style: StatusButtonStyle{}
                             }
 
                             ToolButton {
@@ -317,7 +278,7 @@ Rectangle {
                                 iconSource: "images/1_sendbarCleanup.png"
                                 text: qsTr("Clear")
                                 tooltip: qsTr("Clear")
-                                style: statusButtonStyle
+                                style: StatusButtonStyle{}
                             }
 
                             Item {
@@ -326,19 +287,13 @@ Rectangle {
                             }
 
                             Button {
-                                width: 120
+
                                 id: sendbarHistorys
                                 text: qsTr("History")
                                 iconSource: "images/1_sendbarHistory.png"
                                 tooltip: qsTr("Show Message History")
-                                style: ButtonStyle {
-
-                                    background: Item {
-                                    }
-                                }
-
+                                style: StatusButtonStyle{}
                                 menu: Menu {
-                                    title: "history"
                                     MenuItem {
                                         text: "Show message history"
                                     }
@@ -353,6 +308,9 @@ Rectangle {
                                     MenuItem {
                                         text: "Message manager"
                                     }
+                                }
+                                onClicked: {
+
                                 }
                             }
                         }
