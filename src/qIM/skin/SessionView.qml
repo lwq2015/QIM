@@ -320,13 +320,12 @@ Rectangle {
                                 Layout.fillHeight: true
                             }
 
-                            Button {
+                           MenuButton {
                                 id: sendbarHistorys
                                 text: qsTr("History")
                                 iconSource: "images/1_sendbarHistory.png"
                                 tooltip: qsTr("Show Message History")
-                                style: MenuButtonStyle {
-                                }
+                                normal: false
                                 menu: Menu {
                                     MenuItem {
                                         text: "Show message history"
@@ -388,17 +387,15 @@ Rectangle {
                         tooltip: qsTr("Close Current Session")
                     }
 
-                    Button {
+                    MenuButton {
                         id: sessionSendMsg
                         implicitWidth: 80
-                        height: 30
-                        //  Layout.fillHeight: true
+                        implicitHeight: 28
+
                         text: qsTr("Send")
                         tooltip: qsTr("Send Message")
-                        //    color: "white"
-                        //   borderColor:"#adadad"
-                        style: MenuButtonStyle {
-                        }
+
+
                         menu: Menu {
                             MenuItem {
                                 text: "Enter as hotkey for sending message"

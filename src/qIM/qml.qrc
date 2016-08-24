@@ -21,7 +21,6 @@
         <file>skin/images/systemMinButtonH.png</file>
         <file>skin/images/systemRestoreButton.png</file>
         <file>skin/images/systemRestoreButtonH.png</file>
-        <file>skin/images/background.jpg</file>
         <file>skin/SystemButtonStyle.qml</file>
         <file>skin/images/systemMenuButton.png</file>
         <file>skin/images/recvMessage.png</file>
@@ -42,5 +41,6 @@
         <file>skin/images/background.png</file>
         <file>skin/images/buttonMenu.png</file>
         <file>skin/StatusButtonStyle.qml</file>
+        <file>skin/MenuButtonStyle.qml</file>
     </qresource>
 </RCC>

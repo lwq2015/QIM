@@ -69,21 +69,9 @@ import QtQuick.Controls.Styles 1.4
  */
 BasicButton {
     id: button
-
-    /*! This property holds whether the push button is the default button.
-        Default buttons decide what happens when the user presses enter in a
-        dialog without giving a button explicit focus. \note This property only
-        changes the appearance of the button. The expected behavior needs to be
-        implemented by the user.
-
-        The default value is \c false.
-    */
     property bool isDefault: false
+    property bool normal: true
     property string text: text
-    /*! Assign a \l Menu to this property to get a pull-down menu button.
-
-        The default value is \c null.
-     */
     property Menu menu: null
 
     activeFocusOnTab: true

@@ -17,33 +17,26 @@ Style {
 
     /*! This defines the background of the button. */
     property Component background: Item {
-        property bool down: control.pressed || (control.checkable && control.checked)
+        property real alpha: normal ? 1.0 : 0.6
         implicitWidth: Math.round(TextSingleton.implicitHeight * 4.5)
         implicitHeight: Math.max(25, Math.round(TextSingleton.implicitHeight * 1.2))
         Rectangle {
             anchors.fill: parent
-            anchors.bottomMargin: down ? 0 : -1
-            color: "#10000000"
-            radius: baserect.radius
-        }
-        Rectangle {
-            id: baserect
+            border.width: control.activeFocus ? 2 : 1
+            border.color: (control.hovered || control.checked) ? "#47b" : (normal ? "#999" : "#00000000")
+        //    border.color: control.activeFocus ? "#47b" : "#999"
+            radius: 1
+            opacity: alpha
+
+            color: normal ? "white" : "#00000000"
             gradient: Gradient {
-                GradientStop {color: down ? "#aaa" : "#fefefe"; position: 0}
-                GradientStop {color: down ? "#ccc" : "#e3e3e3"; position: down ? 0.1 : 1}
-            }
-            radius: TextSingleton.implicitHeight * 0.16
-            anchors.fill: parent
-            border.color: control.activeFocus ? "#47b" : "#999"
-            Rectangle {
-                anchors.fill: parent
-                radius: parent.radius
-                color: control.activeFocus ? "#47b" : "white"
-                opacity: control.hovered || control.activeFocus ? 0.1 : 0
-                Behavior on opacity {
-                    NumberAnimation {
-                        duration: 100
-                    }
+                GradientStop {
+                    position: 0
+                    color: control.pressed ? Qt.rgba(204/255.0,204/255.0,204/255.0, alpha) : Qt.rgba(238/255.0,238/255.0,238/255.0, alpha)
+                }
+                GradientStop {
+                    position: 1
+                    color: control.pressed ? Qt.rgba(170/255.0,170/255.0,170/255.0, alpha) : Qt.rgba(204/255.0,204/255.0,204/255.0, alpha)
                 }
             }
         }
@@ -64,11 +57,11 @@ Style {
         }
         Connections {
             target: __behavior
-            property point mouse: Qt.point(__behavior.mouseX, __behavior.mouseY)
             property bool showMenu: menu !== null ? contains(mapToItem(imageItem, __behavior.mouseX, __behavior.mouseY)) : false
             onEffectivePressedChanged: {
                 if (!Settings.hasTouchScreen && __behavior.effectivePressed && showMenu)
                     menuTimer.start()
+
             }
             onReleased: {
                 if (Settings.hasTouchScreen && __behavior.containsMouse && showMenu)
