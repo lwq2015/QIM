@@ -11,7 +11,7 @@ Rectangle {
         id: sessionBackground
         anchors.fill: parent
         opacity: 0.25 // 背景图片透明度小些，才能使前面控件图片的锯齿问题降低
-        //  source: "images/background.png" // 会话窗口背景图片
+        source: "images/background.png" // 会话窗口背景图片
     }
 
     ColumnLayout {
