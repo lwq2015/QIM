@@ -18,16 +18,14 @@ Style {
     /*! This defines the background of the button. */
     property Component background: Item {
         property real alpha: normal ? 1.0 : 0.6
-        implicitWidth: Math.round(TextSingleton.implicitHeight * 4.5)
-        implicitHeight: Math.max(25, Math.round(TextSingleton.implicitHeight * 1.2))
+        implicitWidth: Math.max(TextSingleton.implicitHeight * 4.5, control.width)
+        implicitHeight: Math.max(TextSingleton.implicitHeight * 1.2, control.height)
         Rectangle {
             anchors.fill: parent
             border.width: control.activeFocus ? 2 : 1
             border.color: (control.hovered || control.checked) ? "#47b" : (normal ? "#999" : "#00000000")
-        //    border.color: control.activeFocus ? "#47b" : "#999"
             radius: 1
             opacity: alpha
-
             color: normal ? "white" : "#00000000"
             gradient: Gradient {
                 GradientStop {
@@ -57,14 +55,14 @@ Style {
         }
         Connections {
             target: __behavior
-            property bool showMenu: menu !== null ? contains(mapToItem(imageItem, __behavior.mouseX, __behavior.mouseY)) : false
             onEffectivePressedChanged: {
-                if (!Settings.hasTouchScreen && __behavior.effectivePressed && showMenu)
+                if (!Settings.hasTouchScreen && __behavior.effectivePressed && menu &&
+                     contains(mapToItem(imageItem, __behavior.mouseX, __behavior.mouseY)))
                     menuTimer.start()
-
             }
             onReleased: {
-                if (Settings.hasTouchScreen && __behavior.containsMouse && showMenu)
+                if (Settings.hasTouchScreen && __behavior.containsMouse && menu &&
+                    contains(mapToItem(imageItem, __behavior.mouseX, __behavior.mouseY)))
                     menuTimer.start()
             }
         }

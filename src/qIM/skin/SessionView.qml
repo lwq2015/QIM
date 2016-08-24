@@ -389,13 +389,10 @@ Rectangle {
 
                     MenuButton {
                         id: sessionSendMsg
-                        implicitWidth: 80
-                        implicitHeight: 28
-
+                        width: 80
+                        height: 28
                         text: qsTr("Send")
                         tooltip: qsTr("Send Message")
-
-
                         menu: Menu {
                             MenuItem {
                                 text: "Enter as hotkey for sending message"
