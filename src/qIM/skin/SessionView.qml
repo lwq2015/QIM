@@ -9,15 +9,9 @@ Rectangle {
     color: backgroundColor
     BorderImage {
         id: sessionBackground
-        border {
-            left: 2
-            top: 80
-            right: 2
-            bottom: 2
-        }
         anchors.fill: parent
         opacity: 0.25 // 背景图片透明度小些，才能使前面控件图片的锯齿问题降低
-        source: "images/background.png" // 会话窗口背景图片
+        //  source: "images/background.png" // 会话窗口背景图片
     }
 
     ColumnLayout {
@@ -115,8 +109,8 @@ Rectangle {
 
             // 工具栏右边部份（系统按钮，广告）
             ColumnLayout {
-                Layout.minimumWidth: 160
-                Layout.maximumWidth: 160
+                Layout.minimumWidth: 164
+                Layout.maximumWidth: 164
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 spacing: 0
@@ -130,11 +124,22 @@ Rectangle {
                     // 使用 '||' 重新格式化会换行，使用 '+' 是一样的效果
                     Button {
                         id: systemMenuButton
+                        width: 22
                         anchors.top: parent.top
                         iconSource: "images/systemMenuButton.png"
                         style: SystemButtonStyle {
                         }
-                        menu: Menu {
+
+                        // 这儿不能直接使用menu属性，否则会宽些（会加上默认前头）
+
+                        onClicked: {
+                            // 使用Button自身的MouseArea， 将位置偏移到Button正下方
+                            systemMenu.__xOffset = -__behavior.mouseX
+                            systemMenu.__yOffset = height - __behavior.mouseY
+                            systemMenu.popup()
+                        }
+
+                        property Menu systemMenu: Menu {
                             MenuItem {
                                 text: "Help"
                             }
@@ -320,7 +325,7 @@ Rectangle {
                                 Layout.fillHeight: true
                             }
 
-                           MenuButton {
+                            MenuButton {
                                 id: sendbarHistorys
                                 text: qsTr("History")
                                 iconSource: "images/1_sendbarHistory.png"
@@ -409,8 +414,8 @@ Rectangle {
             // 会话右边的个人信息、历史记录、群成员等
             ColumnLayout {
                 id: rightView
-                Layout.minimumWidth: 160
-                Layout.maximumWidth: 160
+                Layout.minimumWidth: 164
+                Layout.maximumWidth: 164
                 Layout.fillHeight: true
 
                 Rectangle {
