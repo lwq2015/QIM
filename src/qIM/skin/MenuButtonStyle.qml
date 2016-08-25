@@ -11,22 +11,22 @@ Style {
     padding {
         top: 4
         left: 4
-        right: 4 + (menu !== null ? Math.round(TextSingleton.implicitHeight * 1.2) : 0)
+        right: 4 + (control.menu !== null ? Math.round(TextSingleton.implicitHeight * 1.2) : 0)
         bottom: 4
     }
 
     /*! This defines the background of the button. */
     property Component background: Item {
-        property real alpha: normal ? 1.0 : 0.6
-        implicitWidth: Math.max(TextSingleton.implicitHeight * 4.5, control.width)
+        property real alpha: control.normal ? 1.0 : 0.6
+        implicitWidth: Math.max(TextSingleton.implicitHeight * 1.5, control.width)
         implicitHeight: Math.max(TextSingleton.implicitHeight * 1.2, control.height)
         Rectangle {
             anchors.fill: parent
             border.width: control.activeFocus ? 2 : 1
-            border.color: (control.hovered || control.checked) ? "#47b" : (normal ? "#999" : "#00000000")
+            border.color: (control.hovered || control.checked) ? "#47b" : (control.normal ? "#999" : "#00000000")
             radius: 1
             opacity: alpha
-            color: normal ? "white" : "#00000000"
+            color: control.normal ? "white" : "#00000000"
             gradient: Gradient {
                 GradientStop {
                     position: 0
@@ -40,29 +40,33 @@ Style {
         }
         Image {
             id: imageItem
-            visible: menu !== null
-            source: "images/arrow-down.png"
+            property bool empty: !(control.iconSource.length >0 || control.text.length >0)
+            visible: control.menu !== null
+            source: control.menuSource
             anchors.verticalCenter: parent.verticalCenter
-            anchors.right: parent.right
+            anchors.horizontalCenter: if (empty) return parent.horizontalCenter
+            anchors.right: if (!empty) return parent.right
             anchors.rightMargin: 4
             opacity: control.enabled ? 0.6 : 0.5
+
+
         }
 
         Binding {
-            target: menu
+            target: control.menu
             property: "__visualItem"
             value: control
         }
         Connections {
-            target: __behavior
+            target: control.__behavior
             onEffectivePressedChanged: {
-                if (!Settings.hasTouchScreen && __behavior.effectivePressed && menu &&
-                     contains(mapToItem(imageItem, __behavior.mouseX, __behavior.mouseY)))
+                if (!Settings.hasTouchScreen && control.__behavior.effectivePressed && control.menu &&
+                     contains(mapToItem(imageItem, control.__behavior.mouseX, control.__behavior.mouseY)))
                     menuTimer.start()
             }
             onReleased: {
-                if (Settings.hasTouchScreen && __behavior.containsMouse && menu &&
-                    contains(mapToItem(imageItem, __behavior.mouseX, __behavior.mouseY)))
+                if (Settings.hasTouchScreen && control.__behavior.containsMouse && control.menu &&
+                    contains(mapToItem(imageItem, control.__behavior.mouseX, control.__behavior.mouseY)))
                     menuTimer.start()
             }
         }
@@ -71,11 +75,11 @@ Style {
             id: menuTimer
             interval: 10
             onTriggered: {
-                __behavior.keyPressed = false
+                control.__behavior.keyPressed = false
                 if (Qt.application.layoutDirection === Qt.RightToLeft)
-                    menu.__popup(Qt.rect(control.width, control.height, 0, 0), 0)
+                    control.menu.__popup(Qt.rect(control.width, control.height, 0, 0), 0)
                 else
-                    menu.__popup(Qt.rect(0, control.height, 0, 0), 0)
+                    control.menu.__popup(Qt.rect(0, control.height, 0, 0), 0)
             }
         }
     }

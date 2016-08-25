@@ -41,44 +41,18 @@ import QtQuick 2.2
 import QtQuick.Controls 1.2
 import QtQuick.Controls.Private 1.0
 import QtQuick.Controls.Styles 1.4
-/*!
-    \qmltype Button
-    \inqmlmodule QtQuick.Controls
-    \since 5.1
-    \ingroup controls
-    \inherits QtQuickControls1::BasicButton
-    \brief A push button with a text label.
 
-    \image button.png
-
-    The push button is perhaps the most commonly used widget in any graphical
-    user interface. Pushing (or clicking) a button commands the computer to
-    perform some action or answer a question. Common examples of buttons are
-    OK, Apply, Cancel, Close, Yes, No, and Help buttons.
-
-    \qml
-    Button {
-        text: "Button"
-    }
-    \endqml
-
-    Button is similar to the QPushButton widget.
-
-    You can create a custom appearance for a Button by
-    assigning a \l {ButtonStyle}.
- */
 BasicButton {
     id: button
     property bool isDefault: false
     property bool normal: true
     property string text: text
     property Menu menu: null
+    property url menuSource: "images/arrow-down.png"
 
     activeFocusOnTab: true
     Accessible.name: text
     style: MenuButtonStyle{
     }
-
-
 
 }

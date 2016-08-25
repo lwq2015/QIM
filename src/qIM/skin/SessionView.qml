@@ -122,24 +122,14 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignRight
                     // 使用 '||' 重新格式化会换行，使用 '+' 是一样的效果
-                    Button {
+                    MenuButton {
                         id: systemMenuButton
-                        width: 22
+                        width: 34
+                        height:25
                         anchors.top: parent.top
-                        iconSource: "images/systemMenuButton.png"
-                        style: SystemButtonStyle {
-                        }
-
-                        // 这儿不能直接使用menu属性，否则会宽些（会加上默认前头）
-
-                        onClicked: {
-                            // 使用Button自身的MouseArea， 将位置偏移到Button正下方
-                            systemMenu.__xOffset = -__behavior.mouseX
-                            systemMenu.__yOffset = height - __behavior.mouseY
-                            systemMenu.popup()
-                        }
-
-                        property Menu systemMenu: Menu {
+                        normal: false
+                  //    menuSource: "images/systemMenuButton.png"
+                        menu: Menu {
                             MenuItem {
                                 text: qsTr("Help")
                             }
