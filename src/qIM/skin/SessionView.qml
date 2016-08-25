@@ -10,8 +10,16 @@ Rectangle {
     BorderImage {
         id: sessionBackground
         anchors.fill: parent
-        opacity: 0.25 // 背景图片透明度小些，才能使前面控件图片的锯齿问题降低
+//      opacity: 0.25 // 背景图片透明度小些，才能使前面控件图片的锯齿问题降低
         source: "images/background.png" // 会话窗口背景图片
+        Rectangle{
+            anchors.fill: parent
+            gradient: Gradient {
+                  GradientStop { position: 0.0; color: "#80ffffff" }
+                  GradientStop { position: 0.3; color: "#c0ffffff"}
+                  GradientStop { position: 1.0; color: "#ffffffff"}
+              }
+        }
     }
 
     ColumnLayout {
