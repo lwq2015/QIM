@@ -56,7 +56,11 @@ RowLayout {
         iconSource: (hovered + pressed) ? "images/systemMaxButtonH.png" : "images/systemMaxButton.png"
         tooltip: qsTr("Maximum")
         style: SystemButtonStyle {}
-        onClicked: clickedMax()
+        onClicked: {
+            visible=false
+            visableRestore=true
+            clickedMax()
+        }
     }
     Button {
         id: systemRestoreButton
@@ -65,7 +69,11 @@ RowLayout {
         iconSource: (hovered + pressed) ? "images/systemRestoreButtonH.png" : "images/systemRestoreButton.png"
         tooltip: qsTr("Restore")
         style: SystemButtonStyle {}
-        onClicked: clickedRestore()
+        onClicked: {
+            visible=false
+            visableMax=true
+            clickedRestore()
+        }
     }
     Button {
         id: systemCloseButton

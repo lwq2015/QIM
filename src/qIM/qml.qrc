@@ -43,5 +43,8 @@
         <file>skin/MenuButtonStyle.qml</file>
         <file>skin/images/arrow-down.png</file>
         <file>i18n/qim_zh_CN.qm</file>
+        <file>skin/HLine.qml</file>
+        <file>skin/SystemButton.qml</file>
+        <file>skin/VLine.qml</file>
     </qresource>
 </RCC>
