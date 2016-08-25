@@ -36,3 +36,8 @@ RCC_DIR += $${OUTDIR}/temp/$${TARGET}
 MOC_DIR += $${OUTDIR}/temp/$${TARGET}
 
 TRANSLATIONS += i18n/qim_zh_CN.ts
+
+DISTFILES += \
+    skin/HLine.qml \
+    skin/SystemButton.qml \
+    skin/VLine.qml

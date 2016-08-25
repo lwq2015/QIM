@@ -10,23 +10,33 @@ Rectangle {
     BorderImage {
         id: sessionBackground
         anchors.fill: parent
-//      opacity: 0.25 // 背景图片透明度小些，才能使前面控件图片的锯齿问题降低
+        //      opacity: 0.25 // 背景图片透明度小些，才能使前面控件图片的锯齿问题降低
         source: "images/background.png" // 会话窗口背景图片
-        Rectangle{
+        Rectangle {
             anchors.fill: parent
             gradient: Gradient {
-                  GradientStop { position: 0.0; color: "#80ffffff" }
-                  GradientStop { position: 0.3; color: "#c0ffffff"}
-                  GradientStop { position: 1.0; color: "#ffffffff"}
-              }
+                GradientStop {
+                    position: 0.0
+                    color: "#80ffffff"
+                }
+                GradientStop {
+                    position: 0.3
+                    color: "#c0ffffff"
+                }
+                GradientStop {
+                    position: 1.0
+                    color: "#ffffffff"
+                }
+            }
         }
     }
 
     ColumnLayout {
+        spacing: 0
         anchors.fill: parent
         // 工具栏部份
         RowLayout {
-            id: sessionToolbar
+//            id: sessionToolbar
             Layout.minimumHeight: 72
             Layout.maximumHeight: 72
             Layout.fillWidth: true
@@ -51,6 +61,7 @@ Rectangle {
                 }
 
                 RowLayout {
+                    id: sessionToolbar
                     spacing: 0
 
                     Button {
@@ -123,75 +134,19 @@ Rectangle {
                 Layout.fillWidth: true
                 spacing: 0
 
-                RowLayout {
-                    spacing: 0
-                    Layout.minimumHeight: 30
-                    Layout.maximumHeight: 30
-                    Layout.fillWidth: true
-                    Layout.alignment: Qt.AlignRight
-                    // 使用 '||' 重新格式化会换行，使用 '+' 是一样的效果
-                    MenuButton {
-                        id: systemMenuButton
-                        width: 34
-                        height:25
-                        anchors.top: parent.top
-                        normal: false
-                  //    menuSource: "images/systemMenuButton.png"
-                        menu: Menu {
-                            MenuItem {
-                                text: qsTr("Help")
-                            }
-                            MenuItem {
-                                text: qsTr("Setting")
-                            }
+                SystemButton {
+                    id: systemButtons
+                    systemMenu: Menu {
+                        MenuItem {
+                            text: qsTr("Help")
+                        }
+                        MenuItem {
+                            text: qsTr("Setting")
                         }
                     }
-                    Button {
-                        id: triggerRightView
-                        checkable: true
-                        anchors.top: parent.top
-                        iconSource: checked ? "images/1_triggerRightSel.png" : "images/1_triggerRight.png"
-                        tooltip: qsTr("Show or Hide right view")
-                        style: SystemButtonStyle {
-                        }
-                        onClicked: {
-                            rightView.visible = checked ? false : true
-                        }
-                    }
-                    Button {
-                        id: systemMinButton
-                        anchors.top: parent.top
-                        iconSource: (hovered + pressed) ? "images/systemMinButtonH.png" : "images/systemMinButton.png"
-                        tooltip: qsTr("Minimum")
-                        style: SystemButtonStyle {
-                        }
-                    }
-                    Button {
-                        id: systemMaxButton
-                        anchors.top: parent.top
-                        iconSource: (hovered + pressed) ? "images/systemMaxButtonH.png" : "images/systemMaxButton.png"
-                        tooltip: qsTr("Maximum")
-                        style: SystemButtonStyle {
-                        }
-                    }
-                    Button {
-                        id: systemRestoreButton
-                        anchors.top: parent.top
-                        visible: false
-                        iconSource: (hovered + pressed) ? "images/systemRestoreButtonH.png" : "images/systemRestoreButton.png"
-                        tooltip: qsTr("Restore")
-                        style: SystemButtonStyle {
-                        }
-                    }
-                    Button {
-                        id: systemCloseButton
-                        anchors.top: parent.top
-                        iconSource: (hovered + pressed) ? "images/systemCloseButtonH.png" : "images/systemCloseButton.png"
-                        tooltip: qsTr("Close")
-                        style: SystemButtonStyle {
-                        }
-                        onClicked: Qt.quit()
-                    }
+
+                    onRightTriggerChanged: rightView.visible = rightTrigger ? false : true
+                    onClickedClose: Qt.quit()
                 }
 
                 Rectangle {
@@ -212,7 +167,8 @@ Rectangle {
                 }
             }
         }
-
+        HLine {
+        }
         // 工具栏下面的部份
         // 使用SplitView为了使其拖动sendToolbar可以改变收发窗口的高度
         RowLayout {
@@ -224,9 +180,11 @@ Rectangle {
                     orientation: Qt.Vertical
                     Layout.fillWidth: true
                     Layout.fillHeight: true
-                    handleDelegate: Item {
+                    handleDelegate: Rectangle {
                         width: 1
                         height: 2
+                        HLine {
+                        }
                     }
 
                     WebEngineView {
@@ -380,7 +338,7 @@ Rectangle {
                         Layout.fillHeight: true
                         verticalAlignment: Text.AlignBottom
                         color: "royalblue"
-                        text: qsTr("[Ad]Let's open the QML world")
+                        text: qsTr("[AD]Let's open the QML world")
                     }
 
                     Button {
@@ -398,7 +356,8 @@ Rectangle {
                         tooltip: qsTr("Send Message")
                         menu: Menu {
                             MenuItem {
-                                text: qsTr("Enter as hotkey for sending message")
+                                text: qsTr(
+                                          "Enter as hotkey for sending message")
                             }
 
                             MenuItem {
@@ -407,6 +366,8 @@ Rectangle {
                         }
                     }
                 }
+            }
+            VLine {
             }
 
             // 会话右边的个人信息、历史记录、群成员等
