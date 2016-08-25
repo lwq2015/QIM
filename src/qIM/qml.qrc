@@ -39,8 +39,9 @@
         <file>skin/images/1_triggerRight.png</file>
         <file>skin/images/1_triggerRightSel.png</file>
         <file>skin/images/background.png</file>
-        <file>skin/images/buttonMenu.png</file>
         <file>skin/StatusButtonStyle.qml</file>
         <file>skin/MenuButtonStyle.qml</file>
+        <file>skin/images/arrow-down.png</file>
+        <file>i18n/qim_zh_CN.qm</file>
     </qresource>
 </RCC>

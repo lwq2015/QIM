@@ -33,13 +33,13 @@ Rectangle {
                     id: sessionTitle
                     //   height: 20
                     Layout.fillWidth: true
-                    text: "会话标题"
+                    text: qsTr("Session Title")
                     font.pointSize: 16
                 }
                 Text {
                     id: sessionInfo
                     Layout.fillWidth: true
-                    text: "显示签名或者群信息"
+                    text: qsTr("Display sign or session information")
                 }
 
                 RowLayout {
@@ -141,10 +141,10 @@ Rectangle {
 
                         property Menu systemMenu: Menu {
                             MenuItem {
-                                text: "Help"
+                                text: qsTr("Help")
                             }
                             MenuItem {
-                                text: "Setting"
+                                text: qsTr("Setting")
                             }
                         }
                     }
@@ -205,7 +205,7 @@ Rectangle {
                         color: "#1bc566"
                         anchors.centerIn: parent
                         font.pointSize: 18
-                        text: "欢迎使用QIM"
+                        text: qsTr("Welcome to QIM")
                         styleColor: "#de2626"
                         font.italic: true
                         font.bold: true
@@ -333,18 +333,18 @@ Rectangle {
                                 normal: false
                                 menu: Menu {
                                     MenuItem {
-                                        text: "Show message history"
+                                        text: qsTr("Show message history")
                                     }
 
                                     MenuSeparator {
                                     }
 
                                     MenuItem {
-                                        text: "Clear"
+                                        text: qsTr("Clear")
                                     }
 
                                     MenuItem {
-                                        text: "Message manager"
+                                        text: qsTr("Message manager")
                                     }
                                 }
 
@@ -382,7 +382,7 @@ Rectangle {
                         Layout.fillHeight: true
                         verticalAlignment: Text.AlignBottom
                         color: "royalblue"
-                        text: "[广告]让我们开启QML之旅吧"
+                        text: qsTr("[Ad]Let's open the QML world")
                     }
 
                     Button {
@@ -400,11 +400,11 @@ Rectangle {
                         tooltip: qsTr("Send Message")
                         menu: Menu {
                             MenuItem {
-                                text: "Enter as hotkey for sending message"
+                                text: qsTr("Enter as hotkey for sending message")
                             }
 
                             MenuItem {
-                                text: "Ctrl+Enter as hotkey for sending message"
+                                text: qsTr("Ctrl+Enter as hotkey for sending message")
                             }
                         }
                     }

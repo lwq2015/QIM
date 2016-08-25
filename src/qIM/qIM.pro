@@ -4,8 +4,17 @@ QT += qml quick webengine widgets
 CONFIG += c++11
 
 SOURCES += main.cpp
+OTHER_FILES += \
+    skin/*.qml \
+    skin/images/*.png \
 
 RESOURCES += qml.qrc
+
+lupdate_only{
+SOURCES =  \
+          skin/*.qml \
+
+}
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -25,3 +34,5 @@ win32:Release{
 UI_DIR +=  $${OUTDIR}/forms/$${TARGET}
 RCC_DIR += $${OUTDIR}/temp/$${TARGET}
 MOC_DIR += $${OUTDIR}/temp/$${TARGET}
+
+TRANSLATIONS += i18n/qim_zh_CN.ts

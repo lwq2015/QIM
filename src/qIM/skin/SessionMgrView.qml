@@ -110,6 +110,7 @@ Rectangle {
                 // 会话关闭按钮
                 Button {
                     id: sessionItemClose
+                    tooltip: qsTr("Close session")
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
                     iconSource: hovered ? "images/1_sessionItemCloseH.png" : "images/1_sessionItemClose.png"
@@ -140,14 +141,11 @@ Rectangle {
 
             Tab {
                 title: "Red"
-
                 SessionView {}
             }
             Tab {
                 title: "Blue"
-                Rectangle {
-                    color: "blue"
-                }
+                SessionView {}
             }
             Tab {
                 title: "Green"
