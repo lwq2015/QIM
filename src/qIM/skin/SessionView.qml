@@ -136,6 +136,8 @@ Rectangle {
 
                 SystemButton {
                     id: systemButtons
+                    visableTrigger: true
+                    visiableMenu: true
                     systemMenu: Menu {
                         MenuItem {
                             text: qsTr("Help")
@@ -315,12 +317,12 @@ Rectangle {
                             Layout.preferredHeight: 120
                             Layout.fillWidth: true
                             Layout.fillHeight: true
-                            color: "azure"
+                           // color: "azure"
                             wrapMode: TextEdit.Wrap
                             selectByMouse: true
                             selectByKeyboard: true
                             textFormat: TextEdit.RichText
-                            text: "This s a test send textaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaa This s a test send textaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaa"
+                            text: "<b>Hello</b> <i>World!</i> This s a test send textaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaa This s a test send textaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaa"
                         }
                     }
                 }

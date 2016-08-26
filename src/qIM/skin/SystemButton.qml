@@ -23,15 +23,24 @@ RowLayout {
     Layout.fillWidth: true
     Layout.alignment: Qt.AlignRight
 
-
     // 使用 '||' 重新格式化会换行，使用 '+' 是一样的效果
-    MenuButton {
+    Button {
         id: systemMenuButton
-        width: 34
-        height: 25
         anchors.top: parent.top
-        normal: false
-        menu: systemMenu
+        iconSource: "images/systemMenuButton.png"
+        tooltip: qsTr("Show menu")
+        visible: false
+        style: SystemButtonStyle {
+        }
+        onClicked: {
+            if (systemMenu === null) {
+                console.log("未设置systemMenu属性, 无法显示菜单")
+            } else {
+                systemMenu.__xOffset = -__behavior.mouseX
+                systemMenu.__yOffset = systemMenuButton.height - __behavior.mouseY
+                systemMenu.popup()
+            }
+        }
     }
     Button {
         id: triggerRightView
@@ -39,26 +48,31 @@ RowLayout {
         anchors.top: parent.top
         iconSource: checked ? "images/1_triggerRightSel.png" : "images/1_triggerRight.png"
         tooltip: qsTr("Show or Hide right view")
+        visible: false
         style: SystemButtonStyle {
         }
     }
     Button {
         id: systemMinButton
         anchors.top: parent.top
-        iconSource: (hovered + pressed) ? "images/systemMinButtonH.png" : "images/systemMinButton.png"
+        iconSource: (hovered
+                     + pressed) ? "images/systemMinButtonH.png" : "images/systemMinButton.png"
         tooltip: qsTr("Minimum")
-        style: SystemButtonStyle {}
+        style: SystemButtonStyle {
+        }
         onClicked: clickedMin()
     }
     Button {
         id: systemMaxButton
         anchors.top: parent.top
-        iconSource: (hovered + pressed) ? "images/systemMaxButtonH.png" : "images/systemMaxButton.png"
+        iconSource: (hovered
+                     + pressed) ? "images/systemMaxButtonH.png" : "images/systemMaxButton.png"
         tooltip: qsTr("Maximum")
-        style: SystemButtonStyle {}
+        style: SystemButtonStyle {
+        }
         onClicked: {
-            visible=false
-            visableRestore=true
+            visible = false
+            visableRestore = true
             clickedMax()
         }
     }
@@ -68,19 +82,22 @@ RowLayout {
         visible: false
         iconSource: (hovered + pressed) ? "images/systemRestoreButtonH.png" : "images/systemRestoreButton.png"
         tooltip: qsTr("Restore")
-        style: SystemButtonStyle {}
+        style: SystemButtonStyle {
+        }
         onClicked: {
-            visible=false
-            visableMax=true
+            visible = false
+            visableMax = true
             clickedRestore()
         }
     }
     Button {
         id: systemCloseButton
         anchors.top: parent.top
-        iconSource: (hovered + pressed) ? "images/systemCloseButtonH.png" : "images/systemCloseButton.png"
+        iconSource: (hovered
+                     + pressed) ? "images/systemCloseButtonH.png" : "images/systemCloseButton.png"
         tooltip: qsTr("Close")
-        style: SystemButtonStyle {}
+        style: SystemButtonStyle {
+        }
         onClicked: clickedClose()
     }
 }

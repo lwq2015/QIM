@@ -6,7 +6,7 @@ Style {
     id: buttonstyle
 
     /*! The \l {QtQuick.Controls::}{Button} this style is attached to. */
-    readonly property BasicButton control: __control
+    readonly property Control control: __control
     /*! The padding between the background and the label components. */
     padding {
         top: 4

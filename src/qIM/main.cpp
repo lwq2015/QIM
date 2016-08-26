@@ -10,9 +10,9 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QtWebEngine::initialize();
 
-    QTranslator qtTranslator;
-    qtTranslator.load("qim_" + QLocale::system().name(), ":/i18n/");
-    app.installTranslator(&qtTranslator);
+//    QTranslator qtTranslator;
+//    qtTranslator.load("qim_" + QLocale::system().name(), ":/i18n/");
+//    app.installTranslator(&qtTranslator);
 
  //   QQmlApplicationEngine engine;
  //   engine.load(QUrl(QStringLiteral("qrc:/skin/SessionView.qml")));
