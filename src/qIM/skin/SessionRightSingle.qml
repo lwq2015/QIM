@@ -18,6 +18,8 @@ Column {
         text: "13588888888"
         source: "images/1_infoPhone.png"
         tooltip: qsTr("Mobile: ") + text
+        anchors.left: parent.left
+        anchors.right: parent.right
         onLinkClicked: {
             console.log(link)
         }
@@ -33,8 +35,8 @@ Column {
     }
 
     LinkInfo{
-        text: "13588888888"
-        source: "images/1_infoPhone.png"
+        text: "lwq_yu@qq.com"
+        source: "images/1_infoEmail.png"
         tooltip: qsTr("Email: ") + text
         onLinkClicked: {
             console.log(link)

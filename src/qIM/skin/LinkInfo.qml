@@ -22,11 +22,16 @@ RowLayout {
     property alias text: linkLabel.text
     property alias tooltip: linkButton.tooltip
     property alias source: linkImage.source
-    property alias color:linkLabel.color
+    property color color: "green"
     signal linkClicked(string link)
+
+    anchors.left: parent.left
+    anchors.right: parent.right
+    clip: true
 
     Button {
         id: linkButton
+        Layout.preferredHeight: 16
         Layout.fillWidth: true
         Layout.fillHeight: true
         tooltip: linkInfo.text
@@ -42,12 +47,12 @@ RowLayout {
 
         Label {
             id: linkLabel
-            color: "blue"
+            color: linkButton.hovered ? Qt.lighter(linkInfo.color) : linkInfo.color
             anchors.leftMargin: 4
             anchors.left: linkImage.right
             anchors.verticalCenter: parent.verticalCenter
             elide: Text.ElideRight
-            font.underline: true
+            font.underline: linkButton.hovered
         }
     }
 }
