@@ -1,3 +1,17 @@
+// 自定义一个 MenuButtonStyle.qml
+// 功能：
+//  1、与普通Button主要功能一样，但可以单独点击右侧的箭头显示菜单；
+//  2、同时，可以正常状态下没有背景边框
+//  3、可以指定箭头图片
+//
+// Button 也可以使用本Style，但需要另加属性 normal, menuSource, 例如：
+//    Button {
+//        text: "Testing"
+//        property url menuSource: "images/arrow-down.png"
+//        style: MenuButtonStyle {
+//        }
+//    }
+
 import QtQuick 2.2
 import QtQuick.Controls 1.2
 import QtQuick.Controls.Private 1.0
