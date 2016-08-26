@@ -37,9 +37,8 @@ Rectangle {
         anchors.fill: parent
         // 工具栏部份
         RowLayout {
-            //            id: sessionToolbar
-            Layout.minimumHeight: 72
-            Layout.maximumHeight: 72
+            Layout.minimumHeight: 85
+            Layout.maximumHeight: 85
             Layout.fillWidth: true
 
             // 工具栏左边部份（标题、签名、工具栏）
@@ -47,6 +46,7 @@ Rectangle {
                 Layout.fillWidth: true
                 Layout.minimumWidth: 200
                 Layout.leftMargin: 6
+                Layout.topMargin: 4
 
                 Text {
                     id: sessionTitle

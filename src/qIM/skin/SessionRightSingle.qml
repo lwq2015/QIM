@@ -6,7 +6,7 @@ Column {
     anchors.fill: parent
     anchors.margins: 6
     spacing: 10
-    topPadding:12
+    topPadding: 12
 
     Image {
         id: otherHeadImage
@@ -14,18 +14,17 @@ Column {
         anchors.horizontalCenter: parent.horizontalCenter
     }
 
-    LinkInfo{
+    LinkButton {
         text: "13588888888"
         source: "images/1_infoPhone.png"
         tooltip: qsTr("Mobile: ") + text
-        anchors.left: parent.left
-        anchors.right: parent.right
+
         onLinkClicked: {
             console.log(link)
         }
     }
 
-    LinkInfo{
+    LinkButton {
         text: "99999999"
         source: "images/1_infoTel.png"
         tooltip: qsTr("Telephone: ") + text
@@ -34,7 +33,7 @@ Column {
         }
     }
 
-    LinkInfo{
+    LinkButton {
         text: "lwq_yu@qq.com"
         source: "images/1_infoEmail.png"
         tooltip: qsTr("Email: ") + text
@@ -43,7 +42,7 @@ Column {
         }
     }
 
-    Item{
+    Item {
         height: 50
         width: parent.width
     }
