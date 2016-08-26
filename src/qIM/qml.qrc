@@ -46,5 +46,14 @@
         <file>skin/HLine.qml</file>
         <file>skin/SystemButton.qml</file>
         <file>skin/VLine.qml</file>
+        <file>skin/SessionRightMulti.qml</file>
+        <file>skin/SessionRightRobot.qml</file>
+        <file>skin/SessionRightSingle.qml</file>
+        <file>skin/LinkInfo.qml</file>
+        <file>skin/images/userHeadBoy.png</file>
+        <file>skin/images/userHeadGirl.png</file>
+        <file>skin/images/1_infoEmail.png</file>
+        <file>skin/images/1_infoPhone.png</file>
+        <file>skin/images/1_infoTel.png</file>
     </qresource>
 </RCC>

@@ -7,6 +7,7 @@ import QtWebEngine 1.3
 Rectangle {
     anchors.fill: parent
     color: backgroundColor
+    property url rightViewName: "SessionRightSingle.qml"
     BorderImage {
         id: sessionBackground
         anchors.fill: parent
@@ -36,7 +37,7 @@ Rectangle {
         anchors.fill: parent
         // 工具栏部份
         RowLayout {
-//            id: sessionToolbar
+            //            id: sessionToolbar
             Layout.minimumHeight: 72
             Layout.maximumHeight: 72
             Layout.fillWidth: true
@@ -147,7 +148,14 @@ Rectangle {
                         }
                     }
 
-                    onRightTriggerChanged: rightView.visible = rightTrigger ? false : true
+                    onRightTriggerChanged: {
+                        rightView.visible = rightTrigger ? false : true
+                        if (rightViewName.toString().length == 0
+                                && rightView.visible == true) {
+                            rightViewName = "SessionRightSingle.qml"
+                        }
+                    }
+
                     onClickedClose: Qt.quit()
                 }
 
@@ -159,7 +167,7 @@ Rectangle {
                     Text {
                         color: "#1bc566"
                         anchors.centerIn: parent
-                        font.pointSize: 18
+                        font.pointSize: 16
                         text: qsTr("Welcome to QIM")
                         styleColor: "#de2626"
                         font.italic: true
@@ -317,7 +325,7 @@ Rectangle {
                             Layout.preferredHeight: 120
                             Layout.fillWidth: true
                             Layout.fillHeight: true
-                           // color: "azure"
+                            // color: "azure"
                             wrapMode: TextEdit.Wrap
                             selectByMouse: true
                             selectByKeyboard: true
@@ -369,20 +377,20 @@ Rectangle {
                     }
                 }
             }
+
             VLine {
             }
 
-            // 会话右边的个人信息、历史记录、群成员等
-            ColumnLayout {
+            // 动态加载右侧边栏信息: 会话右边的个人信息、历史记录、群成员等
+            Loader {
                 id: rightView
                 Layout.minimumWidth: 164
-                Layout.maximumWidth: 164
+                Layout.maximumWidth: 360
                 Layout.fillHeight: true
-
-                Rectangle {
-                    anchors.fill: parent
-
-                    color: "lightblue"
+                source: rightViewName
+                onStatusChanged: {
+                    if (status === Loader.Error)
+                        console.error("Failed to load right view")
                 }
             }
         }
