@@ -1,13 +1,22 @@
 import QtQuick 2.7
-
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
-IMWindow {
+WindowBase {
     id: sessionMgrWindow
     SplitView {
+        anchors.margins: borderSize
         anchors.fill: parent
+        handleDelegate: Rectangle {
+            width: 2
+            height: 1
+            color: "#00000000"
+            VLine {
+                anchors.rightMargin: -1
+            }
+        }
+
         ListModel {
             id: sessionMgrModel
             ListElement {
@@ -136,19 +145,27 @@ IMWindow {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
+            style: TabViewStyle {
+                // 使TabView背景无色透明
+                frame: Item {
+                }
+            }
+
             Tab {
                 title: "Red"
-                SessionView {}
+                SessionView {
+                }
             }
             Tab {
                 title: "Blue"
-                SessionView {}
+                SessionView {
+                }
             }
             Tab {
                 title: "Green"
-                Rectangle {
-                    color: "green"
-                }
+                //                Rectangle {
+                //                    color: "green"
+                //                }
             }
         }
     }

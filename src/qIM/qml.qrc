@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>skin/SessionView.qml</file>
         <file>skin/SessionMgrView.qml</file>
-        <file>skin/Window.qml</file>
         <file>skin/images/1_addToButton.png</file>
         <file>skin/images/1_inviteButton.png</file>
         <file>skin/images/1_quitSessionButton.png</file>
@@ -55,5 +54,6 @@
         <file>skin/images/1_infoPhone.png</file>
         <file>skin/images/1_infoTel.png</file>
         <file>skin/LinkButton.qml</file>
+        <file>skin/WindowBase.qml</file>
     </qresource>
 </RCC>
