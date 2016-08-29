@@ -8,12 +8,10 @@ WindowBase {
     SplitView {
         anchors.margins: borderSize
         anchors.fill: parent
-        handleDelegate: Rectangle {
+        handleDelegate: Item {
             width: 2
             height: 1
-            color: "#00000000"
             VLine {
-                anchors.rightMargin: -1
             }
         }
 
@@ -43,8 +41,8 @@ WindowBase {
                 width: parent.width
                 height: 40
                 RowLayout {
+                    anchors.leftMargin: 4
                     anchors.fill: parent
-                    spacing: 4
 
                     // 会话标识图片
                     Image {
@@ -100,41 +98,48 @@ WindowBase {
             }
         }
 
-        ListView {
-            id: sessionListView
-            clip: true
+        Item {
+            // 在ListView外面添加一个item,是为了其上下左右有一个边距
             width: 150
             Layout.minimumWidth: 56
             Layout.maximumWidth: 240
-            model: sessionMgrModel
-            delegate: sessionMgrDelegate
-            highlight: Rectangle {
-                color: "lightsteelblue"
-                radius: 5
-                focus: true
 
-                // 会话关闭按钮
-                Button {
-                    id: sessionItemClose
-                    tooltip: qsTr("Close session")
-                    anchors.right: parent.right
-                    anchors.verticalCenter: parent.verticalCenter
-                    iconSource: hovered ? "images/1_sessionItemCloseH.png" : "images/1_sessionItemClose.png"
-                    width: 16
-                    height: 16
-                    style: ButtonStyle {
-                        // 设置一个dummy style为了去掉默认Button的状态
-                        background: Item {
+            ListView {
+                id: sessionListView
+                clip: true
+                anchors.centerIn: parent
+                width: parent.width - 8
+                height: parent.height - 8
+                model: sessionMgrModel
+                delegate: sessionMgrDelegate
+                highlight: Rectangle {
+                    color: "lightsteelblue"
+                    radius: 5
+                    focus: true
+
+                    // 会话关闭按钮
+                    Button {
+                        id: sessionItemClose
+                        tooltip: qsTr("Close session")
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        iconSource: hovered ? "images/1_sessionItemCloseH.png" : "images/1_sessionItemClose.png"
+                        width: 16
+                        height: 16
+                        style: ButtonStyle {
+                            // 设置一个dummy style为了去掉默认Button的状态
+                            background: Item {
+                            }
+                        }
+                        onClicked: {
+                            // 关闭当前会话
+                            sessionMgrModel.remove(sessionListView.currentIndex)
                         }
                     }
-                    onClicked: {
-                        // 关闭当前会话
-                        sessionMgrModel.remove(sessionListView.currentIndex)
-                    }
                 }
-            }
 
-            onCurrentIndexChanged: sessionTabView.currentIndex = currentIndex
+                onCurrentIndexChanged: sessionTabView.currentIndex = currentIndex
+            }
         }
 
         TabView {
