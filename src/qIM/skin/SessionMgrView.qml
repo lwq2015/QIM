@@ -1,14 +1,11 @@
 import QtQuick 2.7
+
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
-Rectangle {
-    width: 820
-    height: 510
-    property color backgroundColor: "gainsboro"
-    color: backgroundColor
-    Window{}
+IMWindow {
+    id: sessionMgrWindow
     SplitView {
         anchors.fill: parent
         ListModel {

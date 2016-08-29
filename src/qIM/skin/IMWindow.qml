@@ -1,4 +1,11 @@
 import QtQuick 2.7
+import QtQuick.Window 2.2
+Window{
+    id: window
+    width: 820
+    height: 510
+    property color backgroundColor: "gainsboro"
+    color: backgroundColor
 
 MouseArea {
     id: dragRegion
@@ -13,4 +20,5 @@ MouseArea {
         window.setX(window.x + delta.x)
         window.setY(window.y + delta.y)
     }
+}
 }
