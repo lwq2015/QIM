@@ -55,5 +55,6 @@
         <file>skin/images/1_infoTel.png</file>
         <file>skin/LinkButton.qml</file>
         <file>skin/WindowBase.qml</file>
+        <file>skin/images/border.png</file>
     </qresource>
 </RCC>
