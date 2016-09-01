@@ -15,7 +15,6 @@ Window {
     height: 510
     color: "#00000000" // 设置透明度为0的白色背景，是为了窗口阴影能显示透明效果
     flags: Qt.Window | Qt.FramelessWindowHint | Qt.WA_TranslucentBackground
-           | Qt.MSWindowsFixedSizeDialogHint
     property int borderSize: 5 // 默认窗口阴影边框为5像素, 设置为0就关闭了阴影效果
     property alias source: backgroundImage.source // 会话窗口背景图片
     property alias backgroundColor: backgroundShadow.color
@@ -86,35 +85,36 @@ Window {
         }
 
         onPositionChanged: {
+            console.log(window.minimumWidth, window.maximumWidth)
             if (pressed) {
                 var delta = Qt.point(mouse.x - start.x, mouse.y - start.y)
 
                 if (hitType == leftSection) {
-                    window.setX(window.x + delta.x)
-                    window.setWidth(window.width - delta.x)
+                    if (updateWidth(window.width - delta.x))
+                        window.setX(window.x + delta.x)
                 } else if (hitType == topLeftSection) {
-                    window.setX(window.x + delta.x)
-                    window.setY(window.y + delta.y)
-                    window.setWidth(window.width - delta.x)
-                    window.setHeight(window.height - delta.y)
+                    if (updateWidth(window.width - delta.x))
+                        window.setX(window.x + delta.x)
+                    if (updateHeight(window.height - delta.y))
+                        window.setY(window.y + delta.y)
                 } else if (hitType == topSection) {
-                    window.setY(window.y + delta.y)
-                    window.setHeight(window.height - delta.y)
+                    if (updateHeight(window.height - delta.y))
+                        window.setY(window.y + delta.y)
                 } else if (hitType == topRightSection) {
-                    window.setY(window.y + delta.y)
-                    window.setWidth(pos.width + delta.x)
-                    window.setHeight(window.height - delta.y)
+                    updateWidth(pos.width + delta.x)
+                    if (updateHeight(window.height - delta.y))
+                        window.setY(window.y + delta.y)
                 } else if (hitType == rightSection) {
-                    window.setWidth(pos.width + delta.x)
+                    updateWidth(pos.width + delta.x)
                 } else if (hitType == bottomRightSection) {
-                    window.setWidth(pos.width + delta.x)
-                    window.setHeight(pos.height + delta.y)
+                    updateWidth(pos.width + delta.x)
+                    updateHeight(pos.height + delta.y)
                 } else if (hitType == bottomSection) {
-                    window.setHeight(pos.height + delta.y)
+                    updateHeight(pos.height + delta.y)
                 } else if (hitType == bottomLeftSection) {
-                    window.setX(window.x + delta.x)
-                    window.setWidth(window.width - delta.x)
-                    window.setHeight(pos.height + delta.y)
+                    if (updateWidth(window.width - delta.x))
+                        window.setX(window.x + delta.x)
+                    updateHeight(pos.height + delta.y)
                 } else if (hitType == titleBarArea) {
                     window.setX(window.x + delta.x)
                     window.setY(window.y + delta.y)
@@ -135,6 +135,22 @@ Window {
                 else
                     cursorShape = Qt.ArrowCursor
             }
+        }
+
+        function updateWidth(w) {
+            if (w >= window.minimumWidth && w <= window.maximumWidth) {
+                window.setWidth(w)
+                return true
+            }
+            return false
+        }
+        function updateHeight(h) {
+            if (h >= window.minimumHeight && h <= window.maximumHeight) {
+                window.setHeight(h)
+                return true
+            }
+
+            return false
         }
 
         function hitTest(width, height, title, x, y) {
