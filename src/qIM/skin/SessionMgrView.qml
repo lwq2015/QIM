@@ -5,6 +5,7 @@ import QtQuick.Controls.Styles 1.4
 
 WindowBase {
     id: sessionMgrWindow
+    titleSize: 80
     SplitView {
         anchors.margins: borderSize
         anchors.fill: parent
