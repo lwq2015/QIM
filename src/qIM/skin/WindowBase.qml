@@ -85,7 +85,6 @@ Window {
         }
 
         onPositionChanged: {
-            console.log(window.minimumWidth, window.maximumWidth)
             if (pressed) {
                 var delta = Qt.point(mouse.x - start.x, mouse.y - start.y)
 
