@@ -133,7 +133,7 @@ Rectangle {
                         }
                     }
 
-                    onClickedClose: Qt.quit()
+                    onClickedClose: window.close()
                 }
 
                 Rectangle {

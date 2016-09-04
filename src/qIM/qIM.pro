@@ -36,6 +36,7 @@ RCC_DIR += $${OUTDIR}/temp/$${TARGET}
 MOC_DIR += $${OUTDIR}/temp/$${TARGET}
 
 TRANSLATIONS += i18n/qim_zh_CN.ts
+IDI_ICON1  ICON   DISCARDABLE   "images/qIM.ico"
 
 DISTFILES += \
     skin/HLine.qml \

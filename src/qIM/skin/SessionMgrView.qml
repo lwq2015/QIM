@@ -4,7 +4,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
 WindowBase {
-    id: sessionMgrWindow
+    id: window
     minimumWidth: 820
     minimumHeight: 510
     titleSize: 80

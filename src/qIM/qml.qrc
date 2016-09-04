@@ -55,5 +55,8 @@
         <file>skin/LinkButton.qml</file>
         <file>skin/WindowBase.qml</file>
         <file>skin/images/border.png</file>
+        <file>skin/WindowImpl.qml</file>
+        <file>skin/WindowTemplate.qml</file>
+        <file>skin/images/qIM.ico</file>
     </qresource>
 </RCC>

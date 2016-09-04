@@ -14,7 +14,7 @@ Window {
     width: 820
     height: 510
     color: "#00000000" // 设置透明度为0的白色背景，是为了窗口阴影能显示透明效果
-    flags: Qt.Window | Qt.FramelessWindowHint | Qt.WA_TranslucentBackground
+    flags: Qt.FramelessWindowHint |Qt.WindowSystemMenuHint |Qt.WindowCloseButtonHint | Qt.Window
     property int borderSize: 5 // 默认窗口阴影边框为5像素, 设置为0就关闭了阴影效果
     property alias source: backgroundImage.source // 会话窗口背景图片
     property alias backgroundColor: backgroundShadow.color
