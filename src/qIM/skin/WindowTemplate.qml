@@ -4,10 +4,8 @@ import QtQuick.Layouts 1.3
 
 WindowImpl {
     ColumnLayout {
-        // 顶层的Layout，需要添加下面的定位，以错开窗口的边和标题栏
-        anchors.topMargin: titlebarSize + borderSize
-        anchors.margins: borderSize
-        anchors.fill: parent
+        // 顶层的Layout，需要使用client 进行定位到客户区域
+        anchors.fill: client
 
         Button {
             anchors.top: parent.top
